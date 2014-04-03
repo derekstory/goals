@@ -1,23 +1,33 @@
 <?php
 include'connect.php';
 
-    $rate = mysql_query("SELECT *
+$rate = mysql_query("SELECT *
+                        FROM `rating`, `users`
+			WHERE rating_author = user_name 
+			&& user_name = '" . $_SESSION['user_name'] . "'
+			&& DATE(rating_date) = DATE(NOW())");
+  $rateTotal = mysql_num_rows($rate);
+  {
+    if($rateTotal < 1)
+    {
+
+    $post = mysql_query("SELECT *
                         FROM `post`, `users`
 			WHERE post_author = user_name 
 			&& user_name = '" . $_SESSION['user_name'] . "'");
-    $rateTotal = mysql_num_rows($rate);
-    {
-    if($rateTotal < 1)
+        $postTotal = mysql_num_rows($post);
         {
-	echo '<h4>Nothing is here yo</h4>';
-	}
-	else
-	while($rateList = mysql_fetch_array($rate))
-	{
-        $rateTitle = $rateList["post_title"];	
+        if($postTotal < 1)
+           {
+	   echo '<h4>Nothing is here yo</h4>';
+	   }
+	   else
+	   while($postList = mysql_fetch_array($post))
+	   {
+           $postTitle = $postList["post_title"];	
 
-        echo '<form>
-   	  <div class="rateThis"> 
+           echo '<form>
+   	     <div class="rateThis"> 
 	      <div class="rateThisWrap">
 	        <select>
 		  <option></option>
@@ -34,11 +44,66 @@ include'connect.php';
 		  <option>D-</option>
 		  <option>F</option>
 	        </select>
-	        <h3>' . $rateTitle . '</h3>
+	        <h3>' . $postTitle . '</h3>
 	      </div>
-	      <div onclick="document.myform.submit()" class="updateRating">UPDATE</div>
-	  </div>
-         </form>';
+	     </div>
+           </form>';
+	   }
 	 }
-      }	 
-      ?>
+    }	 
+    else
+    while($rateList = mysql_fetch_array($rate))
+    {
+    $rateTitle = $rateList["rating_title"];	
+
+    echo '<form>
+      <div class="rateThis"> 
+      <div class="rateThisWrap">
+        <select>
+	  <option></option>
+	  <option>A</option>
+	  <option>A-</option>
+	  <option>B+</option>
+	  <option>B</option>
+	  <option>B-</option>
+	  <option>C+</option>
+	  <option>C</option>
+	  <option>C-</option>
+	  <option>D+</option>
+	  <option>D</option>
+	  <option>D-</option>
+	  <option>F</option>
+        </select>
+        <h3>' . $rateTitle . '</h3>
+      </div>
+     </div>
+   </form>';
+  }
+}	
+
+?>
+
+
+      <form>
+	<div class="rateThisDay">
+	  <div class="rateThisWrap">
+	    <select>
+	      <option></option>
+	      <option>A</option>
+	      <option>A-</option>
+	      <option>B+</option>
+	      <option>B</option>
+	      <option>B-</option>
+	      <option>C+</option>
+	      <option>C</option>
+	      <option>C-</option>
+	      <option>D+</option>
+	      <option>D</option>
+	      <option>D-</option>
+	      <option>F</option>
+	    </select>
+	    <h3>Rate your overall happiness today.</h3>
+	    <h5>**Base this on your mood and experience - this is not a overall grade of your goals.**</h5>
+	  </div>
+	</div>
+      </form>
