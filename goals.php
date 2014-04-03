@@ -11,8 +11,8 @@
 
                 
               <input type="submit" value="Add" id="addGoal" />
-                  <span id="error" style="display: none; color:#F00">Some Error!Please Fill form Properly </span> 
-		  <span id="success" style="display: none; color:#0C0">Your goal has been added! Add another?</span>
+                  <div id="error">Woops! It didn't work. Give it another try!</div> 
+		  <div id="success">Your goal has been added! Add another?</div>
            </form>
 
        </div>
@@ -23,32 +23,8 @@
 
       <h5 class="editCat">Active Goals:</h5>
 
-    <?php
-    $rate = mysql_query("SELECT *
-                        FROM `post`, `users`
-			WHERE post_author = user_name 
-			&& user_name = '" . $_SESSION['user_name'] . "'
-			&& post_status = 'active'");
-    $rateTotal = mysql_num_rows($rate);
-    {
-    if($rateTotal < 1)
-        {
-	echo '<h4>Nothing is here yo</h4>';
-	}
-	else
-	while($rateList = mysql_fetch_array($rate))
-	{
-        $rateTitle = $rateList["post_title"];
-
-        echo'<div class="removeWrap">
-	   <h6>' . $rateTitle . '</h6>
-	   
-	   <div onclick="document.myform.submit()" class="removeDisable removeOption">-Archive-</div>
-
-	   <div class="removeErase removeOption">-Delete all data-</div>
-        </div>';
-        }
-     }
+     <?php
+     echo '<div id="goalDelete"></div>';
      ?>
 
      <h5 class="editCat">Archived goals:</h5>

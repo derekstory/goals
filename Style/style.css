@@ -50,7 +50,7 @@ h1 {
 #user a {
     font-size: 1em;
     line-height: 1.3em;
-    color: rgba(255,255,255, .6);
+    color: rgba(255,255,255, 1);
     text-decoration: none;
 }
 #user a:hover{
@@ -67,7 +67,7 @@ h1 {
 }
 
 #welcomeWrap {
-    height:25em;
+
     position:absolute;
     left:50%;
     top:50%;
@@ -382,16 +382,28 @@ textarea:focus, input:focus{
     font-size: 1.2em;
     text-decoration: underline;
 }
+#success {
+    color:  #56E895;
+    text-align: center;
+    opacity: 0;
+    cursor: default;
+}
+#error {
+    color: red;
+    text-align: center;
+    opacity: 0;
+    cursor: default;
+}
 /*--------------Metrics------------*/
 #metrics {
-    background: #fff;
-    color: #444;
+    background: #444;
+    color: #fff;
     padding-bottom: 2em;
 }
 .metricsSectionWrap {
     margin-left: 4em;
     margin-right: 4em;
-    border: 1px dotted #444;
+    border: 1px dotted #fff;
     padding-bottom: 2em;
     -webkit-transition: all .8s ease;
     -moz-transition: all .8s ease;
@@ -401,17 +413,17 @@ textarea:focus, input:focus{
 }
 .metricsSectionWrap:hover {
     border-radius: 25px;
-    border: 1px solid #444;    
-    box-shadow: 1px 1px 5px 0px #444;
+    border: 1px solid #fff;    
+    box-shadow: 1px 1px 5px 0px #fff;
 }
 .metricsGo {
     text-align: center;
-    color: #444;
+    color: #fff;
     font-size: .5em;
     margin-top: -2em;
 }
 .metricsGo a { 
-    color: #444;
+    color: #fff;
     text-decoration: none;
     margin-left: .5em;
     margin-right: .5em;
@@ -423,8 +435,8 @@ textarea:focus, input:focus{
     font-size: 1.3em;
     text-align: center;
     margin-bottom: 1em;
-    background: #444;
-    color: #fff;
+    background: #fff;
+    color: #444;
     -webkit-transition: all .8s ease;
     -moz-transition: all .8s ease;
     -ms-transition: all .8s ease;
@@ -433,7 +445,7 @@ textarea:focus, input:focus{
 }
 .metricsSectionWrap:hover  .metricsSectionTitle {
     border-radius: 25px 25px 0 0 ;
-    box-shadow: 1px 1px 5px 0px #444;
+    box-shadow: 1px 1px 5px 0px #fff;
 }
 .metricsWrap {
     width: auto;
@@ -446,12 +458,12 @@ textarea:focus, input:focus{
 .metricsPreTitle {
     font-size: 1.3em;
     display: block;
-    color: #444;
+    color: #fff;
 }
 .metricsTitle {
     font-size: .8em;
     display: inline;
-    color: #888;
+    color: #aaa;
 }
 .metricsGrade {
     font-size: .8em;

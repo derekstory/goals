@@ -1,4 +1,11 @@
+
+
 <script>
+
+
+
+$("#goalLoad").load("goalLoad.php");
+$("#goalDelete").load("goalDelete.php");
 
 $(document).ready(function(){
 $('body').fadeIn(1000);
@@ -23,12 +30,9 @@ $(function(){
     $(window).scroll(function() { 
         if ($(this).scrollTop() > 0) { 
             $("#user").css('background','rgba(0, 0, 0, .5)');
-            $("#user a").css('color', '#fff');  
-            
         } 
         else {     
             $("#user").css('background', 'rgba(0,0,0,0)');
-            $("#user a").css('color', 'rgba(255,255,255, .6)'); 
         }  
     });
 });
@@ -65,15 +69,16 @@ url:'newGoal.php',
 data:$(this).serialize(),
 type:'POST',
 success:function(data){
+$("#goalLoad").load("goalLoad.php");
+$("#goalDelete").load("goalDelete.php");
 console.log(data);
-$("#success").show().fadeOut(5000); 
+$("#success").css('opacity', '1').fadeTo(3000,0);
 $('#addGoalText').val("");
 },
 error:function(data){
 $("#error").show().fadeOut(5000);
 }
 });
-
 });
 });
 
