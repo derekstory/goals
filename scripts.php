@@ -1,8 +1,4 @@
-
-
 <script>
-
-
 
 $("#goalLoad").load("goalLoad.php");
 $("#goalDelete").load("goalDelete.php");
@@ -10,7 +6,6 @@ $("#goalDelete").load("goalDelete.php");
 $(document).ready(function(){
 $('body').fadeIn(1000);
 });
-
 $(function() {
   $('a[href*=#]:not([href=#])').click(function() {
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
@@ -76,7 +71,7 @@ $("#success").css('opacity', '1').fadeTo(3000,0);
 $('#addGoalText').val("");
 },
 error:function(data){
-$("#error").show().fadeOut(5000);
+$("#error").css('opacity', '1').fadeTo(3000,0);
 }
 });
 });

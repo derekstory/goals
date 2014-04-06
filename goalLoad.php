@@ -20,6 +20,10 @@ $rate = mysql_query("SELECT *
         if($postTotal < 1)
            {
 	   echo '<h4>Nothing is here yo</h4>';
+	   
+	   echo '<script>
+
+	   </script';
 	   }
 	   else
 	   while($postList = mysql_fetch_array($post))
@@ -55,12 +59,14 @@ $rate = mysql_query("SELECT *
     while($rateList = mysql_fetch_array($rate))
     {
     $rateTitle = $rateList["rating_title"];	
-
+    $rateScore = $rateList["rating_score"];	
+    
     echo '<form>
       <div class="rateThis"> 
       <div class="rateThisWrap">
         <select>
-	  <option></option>
+	  <option class="selected">' . $rateScore . '</option>
+	  <option value="100">A+</option>
 	  <option>A</option>
 	  <option>A-</option>
 	  <option>B+</option>
@@ -107,3 +113,14 @@ $rate = mysql_query("SELECT *
 	  </div>
 	</div>
       </form>
+
+<script>
+$(".selected").text(function () {
+    return $(this).text().replace("100", "A+")
+                         .replace("95", "A")
+                         .replace("90", "A-")
+                         .replace("87", "B+")
+                         .replace("85", "B")
+                         .replace("80", "B-")
+});
+</script>

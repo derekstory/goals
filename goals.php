@@ -11,7 +11,7 @@
 
                 
               <input type="submit" value="Add" id="addGoal" />
-                  <div id="error">Woops! It didn't work. Give it another try!</div> 
+                  <div id="error">You didn't add any content!</div> 
 		  <div id="success">Your goal has been added! Add another?</div>
            </form>
 

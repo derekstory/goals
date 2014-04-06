@@ -476,6 +476,15 @@ textarea:focus, input:focus{
 #allTimeWrap, #monthWrap{
     margin-top: 2em;
 }
+select {
+    color: #56E895;
+}
+select option {
+    color: #444;
+}
+.selected, .selected:hover {
+    display: none;
+}
 /*-------------Reponsive-------------*/
 
 @media only screen and (min-width: 830px){
