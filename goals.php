@@ -9,7 +9,6 @@
            <form method="POST" action="" name="newGoal" id="newGoal">
 	      <input type="text" id="addGoalText" name="post_title" maxLength="90" placeholder="Enter new goal." />
 
-                
               <input type="submit" value="Add" id="addGoal" />
                   <div id="error">You didn't add any content!</div> 
 		  <div id="success">Your goal has been added! Add another?</div>

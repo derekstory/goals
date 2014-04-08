@@ -13,7 +13,7 @@
 	<a class="left" href="#goals">Goals</a>
 	<a class="left" href="#today">Rate</a>
 	<a class="left" href="#metrics">Metrics</a>
-	<a id="signOut" href="signout.php">Sign Out Username</a>
+	<a id="signOut" href="signout.php">Sign Out <?php echo '<span>' . $_SESSION['user_name'] . '</span>'; ?></a>
 	
       </div>
       <div id="welcomeWrap" class="zoom zoomHome">
