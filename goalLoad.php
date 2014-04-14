@@ -21,6 +21,7 @@ $initial = mysql_query("SELECT *
 			 FROM `post`
 			 LEFT JOIN rating ON rating.rating_title = post_title
 			 AND post_author = '" . $_SESSION['user_name'] . "'
+			 AND post_author = rating_author
 			 AND DATE(rating_date) = DATE(NOW())
 			 ");
         
@@ -33,9 +34,10 @@ $initial = mysql_query("SELECT *
            $rateTitle = $postList["rating_title"];
            $rateAuthor = $postList["rating_author"];
            $rateScore = $postList["rating_score"];
+           $rateID = $postList["rating_id"];
 	   $active    = $_SESSION["user_name"];
            	
-           if($rateTitle == null && $postAuthor == $active)
+           if($rateTitle == null AND $postAuthor == $active)
                {
                echo '<form method="POST" action="" name="postRating" class="postRating">
    	         <div class="rateThis"> 
@@ -66,59 +68,110 @@ $initial = mysql_query("SELECT *
   	    	}
             	if(!empty($rateTitle) && $rateAuthor == $active)
             	{
-            	echo '<form>
+            	echo '<form method="POST" action"" name="postRatingUpdate class="postRatingUpdate">
             	  <div class="rateThis"> 
             	    <div class="rateThisWrap">
-            	    <select>
-	     	      <option class="selected">' . $rateScore . '</option>
-	     	      <option value="100">A+</option>
-	     	      <option>A</option>
-	     	      <option>A-</option>
-	     	      <option>B+</option>
-	     	      <option>B</option>
-	     	      <option>B-</option>
-	     	      <option>C+</option>
-	     	      <option>C</option>
-	     	      <option>C-</option>
-	     	      <option>D+</option>
-	     	      <option>D</option>
-	     	      <option>D-</option>
-	     	      <option>F</option>
-            	      </select>
-            	      <h3>' . $rateTitle . '</h3>
+            	    <select name="postSelectUpdate" class="postSelectUpdate">
+	     	      <option class="selected" >' . $rateScore . '</option>
+	     	      <option value="120">A+</option>
+		      <option value="110">A</option>
+		      <option value="100">A-</option>
+		      <option value="90">B+</option>
+		      <option value="80">B</option>
+		      <option value="70">B-</option>
+		      <option value="60">C+</option>
+		      <option value="50">C</option>
+		      <option value="40">C-</option>
+		      <option value="30">D+</option>
+		      <option value="20">D</option>
+		      <option value="10">D-</option>
+		      <option value="0">F</option>
+            	    </select>
+            	    <h3>' . $rateTitle . '</h3>
+		    <input  type="hidden" name="rateID" value="' . $rateID . '"/>
             	    </div>
             	  </div>
                 </form>';
             	}
            }
+
+	   $happyPost = mysql_query("SELECT *
+                        FROM `happy`, `users`
+			WHERE happy_author = user_name 
+			&& user_name = '" . $_SESSION['user_name'] . "'
+			&& DATE(happy_date) = DATE(NOW())
+			");
+
+         
+
+  	   $happyTotal = mysql_num_rows($happyPost);
+  	   {
+    	   if($happyTotal < 1)
+    	   {
+           echo '<form  method="POST" action="" name="happyRating" class="happyRating">
+             <div class="rateThisDay">
+	       <div class="rateThisWrap">
+	        <select name="happyScore" class="happyScore">
+		      <option class="selected"></option>
+	              <option value="120">A+</option>
+		      <option value="110">A</option>
+		      <option value="100">A-</option>
+		      <option value="90">B+</option>
+		      <option value="80">B</option>
+		      <option value="70">B-</option>
+		      <option value="60">C+</option>
+		      <option value="50">C</option>
+		      <option value="40">C-</option>
+		      <option value="30">D+</option>
+		      <option value="20">D</option>
+		      <option value="10">D-</option>
+		      <option value="0">F</option>
+	        </select>
+	        <h3>Rate your overall happiness today.</h3>
+	        <h5>**Base this on your mood and experience - this is not a overall grade of your goals.**</h5>
+	     </div>
+	  </div>
+         </form>';
+	 }
+	 else
+	 while($happyList = mysql_fetch_array($happyPost))
+	 {
+         $happyScore = $happyList["happy_score"];
+         $happyID = $happyList["happy_id"];
+
+	  echo '<form method="POST" action="" name="happyRatingUpdate" class="happyRatingUpdate">
+             <div class="rateThisDay">
+	       <div class="rateThisWrap">
+	        <select name="happyScoreUpdate" class="happyScoreUpdate">
+		      <option class="selected">' . $happyScore . '</option>
+	              <option value="120">A+</option>
+		      <option value="110">A</option>
+		      <option value="100">A-</option>
+		      <option value="90">B+</option>
+		      <option value="80">B</option>
+		      <option value="70">B-</option>
+		      <option value="60">C+</option>
+		      <option value="50">C</option>
+		      <option value="40">C-</option>
+		      <option value="30">D+</option>
+		      <option value="20">D</option>
+		      <option value="10">D-</option>
+		      <option value="0">F</option>
+	        </select>
+   	        <input  type="hidden" name="happyID" value="' . $happyID . '"/>
+	        <h3>Rate your overall happiness today.</h3>
+	        <h5>**Base this on your mood and experience - this is not a overall grade of your goals.**</h5>
+	     </div>
+	  </div>
+       </form>';
+	 }
+	 }
        }
   }
 ?>
 
 
-      <form>
-	<div class="rateThisDay">
-	  <div class="rateThisWrap">
-	    <select>
-	      <option></option>
-	      <option>A</option>
-	      <option>A-</option>
-	      <option>B+</option>
-	      <option>B</option>
-	      <option>B-</option>
-	      <option>C+</option>
-	      <option>C</option>
-	      <option>C-</option>
-	      <option>D+</option>
-	      <option>D</option>
-	      <option>D-</option>
-	      <option>F</option>
-	    </select>
-	    <h3>Rate your overall happiness today.</h3>
-	    <h5>**Base this on your mood and experience - this is not a overall grade of your goals.**</h5>
-	  </div>
-	</div>
-      </form>
+     
 
 <script >
 $(".selected").text(function () {
@@ -156,5 +209,53 @@ $('select.postSelect').change(function () {
     });
 });
 
+$('select.postSelectUpdate').change(function () {
+    $.ajax({
+        url: 'postRatingUpdate.php',
+        data: $(this.form).serialize(),
+        type: 'POST',
+        success: function (data) {
+            $("#goalLoad").load("goalLoad.php");
+            $("#goalDelete").load("goalDelete.php");
+            console.log(data);
+            $("#success").css('opacity', '1').fadeTo(3000, 0);
+            $('#addGoalText').val("");
+        },
+        error: function (data) {
+            $(".error").css('opacity', '1').fadeTo(3000, 0);
+        }
+    });
+});
 
+$('select.happyScore').change(function () {
+    $.ajax({
+        url: 'happyRate.php',
+        data: $(this.form).serialize(),
+        type: 'POST',
+        success: function (data) {
+            $("#goalLoad").load("goalLoad.php");
+            console.log(data);
+            $("#success").css('opacity', '1').fadeTo(3000, 0);
+        },
+        error: function (data) {
+            $(".error").css('opacity', '1').fadeTo(3000, 0);
+        }
+    });
+});
+
+$('select.happyScoreUpdate').change(function () {
+    $.ajax({
+        url: 'happyRateUpdate.php',
+        data: $(this.form).serialize(),
+        type: 'POST',
+        success: function (data) {
+            $("#goalLoad").load("goalLoad.php");
+            console.log(data);
+            $("#success").css('opacity', '1').fadeTo(3000, 0);
+        },
+        error: function (data) {
+            $(".error").css('opacity', '1').fadeTo(3000, 0);
+        }
+    });
+});
 </script>
