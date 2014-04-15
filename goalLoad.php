@@ -42,7 +42,6 @@ $initial = mysql_query("SELECT *
                echo '<form method="POST" action="" name="postRating" class="postRating">
    	         <div class="rateThis"> 
 	          <div class="rateThisWrap">
-		    <div style="opacity: 0" class="error">bad!</div>
 	            <select name="postSelect" class="postSelect">
 		      <option class="selected"></option>
 		      <option value="120">A+</option>
@@ -102,8 +101,6 @@ $initial = mysql_query("SELECT *
 			&& DATE(happy_date) = DATE(NOW())
 			");
 
-         
-
   	   $happyTotal = mysql_num_rows($happyPost);
   	   {
     	   if($happyTotal < 1)
@@ -128,7 +125,7 @@ $initial = mysql_query("SELECT *
 		      <option value="0">F</option>
 	        </select>
 	        <h3>Rate your overall happiness today.</h3>
-	        <h5>**Base this on your mood and experience - this is not a overall grade of your goals.**</h5>
+	        <h5 class="happyMessage">**Base this on your mood and experience - this is not a overall grade of your goals.**</h5>
 	     </div>
 	  </div>
          </form>';
@@ -160,7 +157,7 @@ $initial = mysql_query("SELECT *
 	        </select>
    	        <input  type="hidden" name="happyID" value="' . $happyID . '"/>
 	        <h3>Rate your overall happiness today.</h3>
-	        <h5>**Base this on your mood and experience - this is not a overall grade of your goals.**</h5>
+	        <h5 class="happyMessage">**Base this on your mood and experience - this is not a overall grade of your goals.**</h5>
 	     </div>
 	  </div>
        </form>';
@@ -198,10 +195,8 @@ $('select.postSelect').change(function () {
         type: 'POST',
         success: function (data) {
             $("#goalLoad").load("goalLoad.php");
-            $("#goalDelete").load("goalDelete.php");
             console.log(data);
             $("#success").css('opacity', '1').fadeTo(3000, 0);
-            $('#addGoalText').val("");
         },
         error: function (data) {
             $(".error").css('opacity', '1').fadeTo(3000, 0);
@@ -216,10 +211,8 @@ $('select.postSelectUpdate').change(function () {
         type: 'POST',
         success: function (data) {
             $("#goalLoad").load("goalLoad.php");
-            $("#goalDelete").load("goalDelete.php");
             console.log(data);
             $("#success").css('opacity', '1').fadeTo(3000, 0);
-            $('#addGoalText').val("");
         },
         error: function (data) {
             $(".error").css('opacity', '1').fadeTo(3000, 0);

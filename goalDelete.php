@@ -16,14 +16,48 @@
 	while($rateList = mysql_fetch_array($rate))
 	{
         $rateTitle = $rateList["post_title"];
+        $postID = $rateList["post_id"];
 
-        echo'<div class="removeWrap">
+        echo'<form method="POST" action="" name="delete" class="postDelete">
+	<div class="removeWrap">
 	   <h6>' . $rateTitle . '</h6>
-	   
-	   <div onclick="document.myform.submit()" class="removeDisable removeOption">-Archive-</div>
-
-	   <div class="removeErase removeOption">-Delete all data-</div>
-        </div>';
+	   <div class="delete">-Delete all data-</div>
+	   <div class="deleteWarning">
+	       <span>Are you sure?</span>
+	       <span><input class="yes" value="Yes" type="submit" /></span>
+	       <span> / </span>
+	       <span class="no">No</span>
+	   </div>
+        </div>
+	<input  type="hidden" name="postID" value="' . $postID . '"/>
+	</form>';
         }
      }
 ?>
+
+<script>
+$('.delete').click(function() {
+$(this).hide().next().show();			      
+});
+
+$('.no').click(function() {
+$(this).parent().hide().prev().show();
+});
+
+$('.postDelete').on('submit', function(e) {
+e.preventDefault();
+    $.ajax({
+        url: 'delete.php',
+        data: $(this).serialize(),
+        type: 'POST',
+        success: function (data) {
+            $("#goalDelete").load("goalDelete.php");
+	    $("#goalLoad").load("goalLoad.php");	
+            console.log(data);
+        },
+        error: function (data) {
+        }
+    });
+});
+
+</script>

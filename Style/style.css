@@ -134,7 +134,6 @@ h1 {
 .rateThis:hover {
     border: 1px solid #444;
     box-shadow: 1px 1px 5px 0px #444;
-    border-radius: 25px;
 }
 .rateThisDay {
     font-size: 1em;
@@ -154,7 +153,6 @@ h1 {
 .rateThisDay:hover {
     border: 1px solid #444;
     box-shadow: 1px 1px 5px 0px #444;
-    border-radius: 25px;
 }
 .rateThisDay h5 {
     font-size: .6em;
@@ -208,7 +206,6 @@ textarea:focus, input:focus{
 .rateThis:hover .updateRating, .rateThisDay:hover .updateRating {
     display: block;
     height: 1.4em;
-    border-radius: 0 0 25px 25px;
 }
 .updateRating {
     height: 0em;
@@ -259,7 +256,6 @@ textarea:focus, input:focus{
     transition: all .8s ease;
 }
 .editWrap:hover {
-    border-radius: 25px;
     border: 1px #fff solid;
     box-shadow: 1px 1px 5px 0px #fff;
 }
@@ -280,7 +276,6 @@ textarea:focus, input:focus{
     transition: all .8s ease;
 }
 .editWrap:hover .editTitle {
-    border-radius: 25px 25px 0 0;
     border: 1px #fff solid;
     box-shadow: 1px 1px 5px 0px #fff;
 }
@@ -292,11 +287,9 @@ textarea:focus, input:focus{
     font-size: 1em;
     line-height: 1em;
     border-radius: 4px;
-    margin-left: 2em;
-    margin-right: 2em;
     text-align: center;
     cursor: pointer;
-    width: 85%;
+    width: 100%;
     margin-top: 1em;
     margin-bottom: 1em;
     -webkit-transition: all .8s ease;
@@ -312,7 +305,7 @@ textarea:focus, input:focus{
 #addGoalText {
     width: 100%;
     margin: auto;
-    margin-top: 0em;
+    margin-top: .5em;
     height: 1.3em;
     line-height: 1.3em;
     font-size: .8em;
@@ -333,47 +326,22 @@ textarea:focus, input:focus{
     color: #444;
 }
 .removeWrap {
+    font-size: .8em;
     padding-left: 2em;
     padding-right: 2em;
-    padding-bottom: 1em;
+    padding-bottom: .2em;
     margin: 1em;
-    margin-top: 1.3em;
+    margin-top: .5em;
 }
-.removeDisable:hover {
-    background: #2273BA;
-    border-radius: 2em;
-    color: #444;
-    padding: .3em;
-}
-.reActivate:hover {
-    background: #56E895;
-    border-radius: 2em;
-    color: #444;
-    padding: .3em;
-}
-.removeErase {
-    margin-left: 1em;
-    
-}
-.removeErase:hover {
-    background: #BA2222;
-    border-radius: 2em;
-    color: #444;
-    padding: .3em;
-}
-.removeOption {
-    font-size: .6em; 
+
+.delete {
+    width: 9em;
+    font-size: .7em; 
     text-decoration: none;
-    float: left;
     cursor: pointer;
-    padding: .3em;
-    -webkit-transition: all .8s ease;
-    -moz-transition: all .8s ease;
-    -ms-transition: all .8s ease;
-    -o-transition: all .8s ease;
-     transition: all .8s ease;
+    transition: all .8s ease;
 }
-.removeOption:hover {
+.delete:hover {
     text-decoration: underline;
 }
 .editCat {
@@ -394,6 +362,27 @@ textarea:focus, input:focus{
     opacity: 0;
     cursor: default;
 }
+.deleteWarning {
+    display: none;
+    font-size: .7em;
+}
+.yes {
+    background: none;
+    color: red;
+    border: none;
+    font-size: .8em;
+    cursor: pointer;
+}
+.yes:hover {
+    text-decoration: underline;
+}
+.no {
+    color: #56E895;
+    cursor: pointer;
+}
+.no:hover {
+    text-decoration: underline;
+}
 /*--------------Metrics------------*/
 #metrics {
     background: #444;
@@ -412,7 +401,6 @@ textarea:focus, input:focus{
      transition: all .8s ease;
 }
 .metricsSectionWrap:hover {
-    border-radius: 25px;
     border: 1px solid #fff;    
     box-shadow: 1px 1px 5px 0px #fff;
 }
@@ -444,7 +432,6 @@ textarea:focus, input:focus{
      transition: all .8s ease;
 }
 .metricsSectionWrap:hover  .metricsSectionTitle {
-    border-radius: 25px 25px 0 0 ;
     box-shadow: 1px 1px 5px 0px #fff;
 }
 .metricsWrap {
@@ -512,10 +499,13 @@ select option {
 }
 }
 @media only screen and (max-width: 450px){
-  .rateThisDay, .rateThis, .editWrap, .editTitle, .metricsWrap, .metricsSectionTitle {
+  .rateThisDay, .rateThis, .editWrap, .editTitle, .metricsWrap, .metricsSectionTitle, .removeWrap {
     font-size: 1.6em;
   }
   .removeOption {
    font-size: .7em;   
+  }
+  .happyMessage {
+  display: none;
   }
 }

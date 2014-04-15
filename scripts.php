@@ -21,6 +21,11 @@ $(function() {
   });
 });
 
+$('.delete').click(function() {
+$('.deleteWarning').show();
+$(this).hide();			      
+});
+
 $(function(){
     $(window).scroll(function() { 
         if ($(this).scrollTop() > 0) { 
