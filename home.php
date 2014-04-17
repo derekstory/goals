@@ -1,12 +1,4 @@
 <body>
-<?php
-       if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true)
-        {}else
-        {
-        header("Location: signin.php");
-	exit;
-        }
-?>
   <section id="home">
       <div id="user" class="zoom">
 	<a class="left" href="#home">Home</a>

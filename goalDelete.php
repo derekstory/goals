@@ -1,4 +1,4 @@
- <?php
+<?php
     include 'connect.php';
 
     $rate = mysql_query("SELECT *
