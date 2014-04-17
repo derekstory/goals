@@ -30,8 +30,10 @@ $initial = mysql_query("SELECT *
 	   while($postList = mysql_fetch_array($post))
 	   {
            $postTitle = $postList["post_title"];
+	   $postTitle = stripslashes($postTitle);
            $postAuthor = $postList["post_author"];
            $rateTitle = $postList["rating_title"];
+	   $rateTitle = stripslashes($rateTitle);
            $rateAuthor = $postList["rating_author"];
            $rateScore = $postList["rating_score"];
            $rateID = $postList["rating_id"];

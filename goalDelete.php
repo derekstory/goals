@@ -16,6 +16,7 @@
 	while($rateList = mysql_fetch_array($rate))
 	{
         $rateTitle = $rateList["post_title"];
+	$rateTitle = stripslashes($rateTitle);
         $postID = $rateList["post_id"];
 
         echo'<form method="POST" action="" name="delete" class="postDelete">
