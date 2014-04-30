@@ -1,11 +1,20 @@
+<script src="http://foundation.zurb.com/assets/js/modernizr.js"></script>
+<script src="http://foundation.zurb.com/assets/js/templates/foundation.js"></script>
 <script>
+      $(document).foundation();
+
+      var doc = document.documentElement;
+      doc.setAttribute('data-useragent', navigator.userAgent);
+</script>
+<script src="http://foundation.zurb.com/assets/js/jquery.js"></script>
+<script>
+$(document).ready(function(){
+$('body').fadeIn(1000);
+});
 
 $("#goalLoad").load("goalLoad.php");
 $("#goalDelete").load("goalDelete.php");
 
-$(document).ready(function(){
-$('body').fadeIn(1000);
-});
 $(function() {
   $('a[href*=#]:not([href=#])').click(function() {
     if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
@@ -82,6 +91,9 @@ $("#error").css('opacity', '1').fadeTo(3000,0);
 });
 });
 
+$('.dropLi a').click(function(){
+$('.top-bar').removeClass('expanded');
+});
 </script>
 
 </body>

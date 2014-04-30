@@ -1,4 +1,4 @@
-<section id="metrics" class="zoom">
+  <section id="metrics" class="zoom">
     <h1>Metrics</h1>
 
     <div class="metricsSectionWrap" id="weekWrap">
@@ -108,5 +108,4 @@
 	</div>
       </div>
     </div>
-
   </section>

@@ -1,6 +1,9 @@
 <?php
     include 'connect.php';
 
+    echo '<div class="editWrap">
+      <h5 class="editTitle">Manage goals:</h5>';
+
     $rate = mysql_query("SELECT *
                         FROM `post`, `users`
 			WHERE post_author = user_name 
@@ -35,6 +38,7 @@
         }
      }
 ?>
+</div>
 
 <script>
 $('.delete').click(function() {
