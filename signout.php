@@ -14,7 +14,7 @@ if($_SESSION['signed_in'] == true)
 }
 else
 {
-        echo '<h3 style="color:#000; margin-top:200px; margin-left:50px">You are not signed in. Would you like to <a href="signin.php">sign-in</a>?</h3>';
+        header("Location: signin.php");
 }
 ob_end_flush();
 ?>

@@ -1,39 +1,39 @@
 <?php
 ob_start();
 include 'connect.php';
+include 'head.php';
 ?>
-<!doctype html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="description" content="Nextep Support Documentation" />
-    <title>Support Documentation</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script type='text/javascript' src="scripts/jquery.php"></script>
-    <script src="ckeditor/ckeditor.js"></script>
-    <link href='http://fonts.googleapis.com/css?family=Josefin+Sans' rel='stylesheet' type='text/css'>
-</head>
-<body>
-     
 
-     <div id="signin">
-     <img src="images/logo.gif" id="supportLogo"/>
-     <h1 style="color:#fff;margin-top:200px">-Sign-In-</h1>
+<script>
+$(document).ready(function(){
+$('body').fadeIn(800);
+});
+</script>
+
+<body>
 
 <?php
 if(isset($_SESSION['signed_in']) && $_SESSION['signed_in'] == true)
 {
-        echo 'You are already signed in, you can <a href="signout.php">sign out</a> if you want.';
+	 header("Location: index.php");
 }
 else
 {
         if($_SERVER['REQUEST_METHOD'] != 'POST')
         {
-                echo '<form method="post" action="">
-                      User Name: <input type="text" name="user_name" style="height:40px;text-align:left; width:100%; font-size: 1.3em; background: rgba(255,255,255,.05); color: #000; outline: none" /><br />
-                      Password: <input type="password" name="user_pass" style="height:40px;text-align:left; width: 100%; font-size: 1.3em;background: rgba(255,255,255,.05); color: #000; outline: none"/><br />
-                      <input type="submit" value="Sign-In" id="submitSignIn"/><br />
-                </form>';
-        }
+
+
+echo '<section id="signinBackground"></section>
+        <div id="signinTop">
+	  <div id="signinTopWrap">
+	    <form method="post" action="">
+	      <input type="text" name="user_name" id="signinTextUsername" placeholder="Username" />
+	      <input type="password" name="user_pass" id="signinTextPassword" placeholder="Password" />
+	      <input type="submit" id="signinSubmit" value="Sign-In"/>
+	    </form>
+	  </div>
+	</div>';
+ }
         else
         {
                 $errors = array();
@@ -99,11 +99,19 @@ else
         }
 
 }
-
 ?>
-
-
+<div id="signupWrap">
+   <h1>Sign Up. Its free.</h1>
+   <input type="text" id="signupTextUsername" placeholder="Username" />
+    <input type="password" id="signupTextPassword" placeholder="Password" />
+    <input type="password" id="signupTextPasswordConfirm" placeholder="Confirm Password" />
+    <div id="terms"><h5><a href="goals.html">Terms and Conditions</a></h5></div>
+    <input type="submit" id="signupSubmit" value="Sign-Up"/>
 </div>
+
+<div id="signupInfoSection">
+</div>
+
 <?php
 ob_end_flush();
 ?>

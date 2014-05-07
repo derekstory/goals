@@ -1,4 +1,6 @@
 <body>
+  <div class="loader"></div>
+  <section id="backgroundFixed"></section>
   <section id="home">
     <div class="row fixed" id="user">
       <div class="columns">

@@ -8,6 +8,11 @@
 </script>
 <script src="http://foundation.zurb.com/assets/js/jquery.js"></script>
 <script>
+$(window).load(function() {
+	$(".loader").delay(1000).fadeOut("slow");
+})
+
+
 $(document).ready(function(){
 $('body').fadeIn(1000);
 });
@@ -39,9 +44,11 @@ $(function(){
     $(window).scroll(function() { 
         if ($(this).scrollTop() > 0) { 
             $("#user").css('background','rgba(0, 0, 0, .5)');
+	    $("#user a").css('color', '#fff');  
         } 
         else {     
             $("#user").css('background', 'rgba(0,0,0,0)');
+	    $("#user a").css('color', '#666666');	 
         }  
     });
 });
@@ -94,6 +101,7 @@ $("#error").css('opacity', '1').fadeTo(3000,0);
 $('.dropLi a').click(function(){
 $('.top-bar').removeClass('expanded');
 });
+
 </script>
 
 </body>
