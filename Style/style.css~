@@ -532,12 +532,11 @@ select option {
   position: fixed;
   height: 100%; 
   width: 100%;
-  background: url(images/river.jpg) no-repeat center center fixed; 
+  background: url(images/river_blur.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  opacity: .4;
 }
 
 #signinTop {
@@ -622,6 +621,22 @@ input#signinTextPassword:-ms-input-placeholder { /* Internet Explorer 10+ */
     margin: 6em;
 }
 #signupWrap h1 { 
+    color: white;
+    margin: 0; 
+    margin-bottom: 1em;
+    padding: 0;
+    font-size: 1.7em;
+}
+#signinErrorWrap {
+    padding: 6em;
+}
+#signinWrap {
+    background: rgba(0,0,0,.7);
+    padding: 1em;
+    border-radius: 10px;
+    width: 500px;
+}
+#signinWrap h1 { 
     color: white;
     margin: 0; 
     margin-bottom: 1em;
@@ -718,6 +733,9 @@ input#signupTextPasswordConfirm:-ms-input-placeholder { /* Internet Explorer 10+
     }
     #signupTextUsername, #signupTextPassword, #signupTextPasswordConfirm, #signupSubmit{
 	width: 100%;
+    }
+    #signinErrorWrap {
+	padding: 0;
     }
 }
 

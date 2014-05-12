@@ -24,12 +24,13 @@ else
 
 
 echo '<section id="signinBackground"></section>
-        <div id="signinTop">
+        <div id="signinTopError">
 	  <div id="signinTopWrap">
 	    <form method="post" action="">
-	      <input type="text" name="user_name" id="signinTextUsername" placeholder="Username" />
-	      <input type="password" name="user_pass" id="signinTextPassword" placeholder="Password" />
+	      <input type="text" name="user_name" id="signinTextUsernameError" placeholder="Username" />
+	      <input type="password" name="user_pass" id="signinTextPasswordError" placeholder="Password" />
 	      <input type="submit" id="signinSubmit" value="Sign-In"/>
+	      <h3 id="signinError">Username/Password did not match</h3>
 	    </form>
 	  </div>
 	</div>';
