@@ -14,7 +14,6 @@ echo '<form method="post" action="">
            User Name<input type="text" name="user_name"style="height:50px;text-align:left; width:100%; font-size:1.3em; background: rgba(255,255,255,.05); color: #000; outline: none"/><br />
            Password<input type="PASSWORD" name="user_pass" style="height:50px;text-align:left; width: 100%; font-size: 1.3em; background: rgba(255,255,255,.05); color: #000; outline: none "/><br />
            Repeat Password<input type="PASSWORD" name="user_pass_check"style="height:50px;text-align:left;width:100%; font-size: 1.3em; background: rgba(255,255,255,.05); color: #000; outline: none"/><br />
-           E-mail Address<input type="text" name="user_email" style="height:50px;text-align:left;width:100%; font-size:1.3em;background: rgba(255,255,255,.05); color: #000; outline: none" /><br />
            <input type="submit" value="Register" id="submitNewUser"/></p>
       </form>';
 }
@@ -51,13 +50,6 @@ else
                         $errors[] = die('The password field cannot be empty. Please <a href="signup.php">try again</a>.');
                }
         }
-        if(isset($_POST['user_email']))
-        {
-               if(empty($_POST['user_email']))
-               {
-                        $errors [] = die('The E-Mail Address field must not be empty. Please <a href="signup.php">try again</a>.');
-               }
-        }
         if(!empty($errors))
         {
                 $die;
@@ -73,10 +65,9 @@ else
 
         {
                 $sql = "INSERT INTO
-                        users(user_name, user_pass, user_email ,user_date, user_level)
+                        users(user_name, user_pass, user_date, user_level)
                         VALUES('" . ($_POST['user_name']) . "',
                         '" . sha1($_POST['user_pass']) . "',
-                        '" . mysql_real_escape_string($_POST['user_email']) . "',
                         NOW(),
                         0)";
                 $result = mysql_query($sql);

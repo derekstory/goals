@@ -3,8 +3,8 @@ session_start();
 //connect.php
 $server            = '127.0.0.1';
 $username        = 'root';
-$password        = 'Goiu!234';
-$database        = 'test';
+$password        = 'Stop!b4ubmh';
+$database        = 'goals';
 
 if(!mysql_connect($server, $username, $password))
 {
