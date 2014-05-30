@@ -98,15 +98,15 @@ echo '<div id="signupTopWrap" class="large-12 row">
 
                 if(empty($_POST['user_name']))
                 {
-                        $errors[] =  header('location:signin_error.php');
+                        $errors[] =  header('location:signin_error.php#signin');
                 }
                 if(empty($_POST['user_password']))
                 {
-                        $errors[] =  header('location:signin_error.php');
+                        $errors[] =  header('location:signin_error.php#signin');
                 }
                 if(!empty($errors))
                 {
-                        $errors[] =  header('location:signin_error.php');
+                        $errors[] =  header('location:signin_error.php#signin');
                 }
                 elseif($_POST['action']=="login")
                 {
@@ -130,7 +130,7 @@ echo '<div id="signupTopWrap" class="large-12 row">
                         {
                                 if(mysql_num_rows($result) == 0)
                                 {
-                        	$errors[] =  header('location:signin_error.php');	
+                        	$errors[] =  header('location:signin_error.php#signin');	
                                 }
                                 else
                                 {
@@ -177,7 +177,7 @@ if($_SERVER['REQUEST_METHOD'] != 'POST')
 		<small class="error">Password does not match.</small>
             </div>
             <div id="terms">
-                <h5><a href="goals.html">Terms and Conditions</a></h5>
+                <h5><a href="termsandconditions.php">Terms and Conditions</a></h5>
             </div>
 	  <input name="action" type="hidden" value="signup" />
             <input type="submit" id="signupSubmit" class="submit" value="Sign-Up">
@@ -190,10 +190,9 @@ elseif($_POST['action']=="signup")
        
         if(mysql_num_rows($q) != 0)
         {
-        $error[] =  header('location:test.php');	                        
+        $error[] =  header('location:username_error#signupWrap.php');	                        
         }
         else
-
         {
                 $sql = "INSERT INTO
                         users(                                   user_name, 
@@ -211,14 +210,45 @@ elseif($_POST['action']=="signup")
                 }
                 else
                 {
-                $user_id = mysql_insert_id();
-                $sql = "COMMIT";
                 $result = mysql_query($sql);
-                header('location:index.php');
-                }
-         }
+                $sql2 = "SELECT	
+                                                user_id,
+                                                user_name,
+                                                user_level
+                                        FROM
+                                                users
+                                        WHERE
+                                                user_name = '" . mysql_real_escape_string($_POST['user_name']) . "'
+                                        AND
+                                                user_pass = '" . sha1($_POST['user_pass']) . "'";
 
-}
+                        $result2 = mysql_query($sql2);
+                        if(!$result2)
+                        {
+                                echo 'Something went wrong while signing in. Please try again later.';
+                        }
+                        else
+                        {
+                                if(mysql_num_rows($result2) == 0)
+                                {
+                        	$errors[] =  header('location:signin_error.php');	
+                                }
+                                else
+                                {
+                                        $_SESSION['signed_in'] = true;
+
+                                        while($row2 = mysql_fetch_assoc($result2))
+                                        {
+                                                $_SESSION['user_id']         = $row2['user_id'];
+                                                $_SESSION['user_name']         = $row2['user_name'];
+                                                $_SESSION['user_level'] = $row2['user_level'];
+                                        }
+                                        header('location:index.php');
+                                }
+                        }
+	       }
+       }
+}         
 ?>
 
     <div class="row columns large-6">

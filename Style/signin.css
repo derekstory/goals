@@ -170,6 +170,29 @@ h1 {
     margin-top: 15px;
     border-radius: 5px;
 }
+.topInputError input {
+    margin-top: 15px;
+    border-radius: 5px;
+    border: 2px solid red;
+}
+.error {
+    margin-top: -15px;
+    margin-bottom: 5px;
+    color: red;
+    font-size: .7em;
+    white-space: nowrap;
+}
+.usernameError {
+    color: red !important;
+    margin: 0 !important;
+    padding: 0;
+}
+.usernameTryAgain {
+    color: white; 
+    text-align: center;
+    margin: 10px;
+    padding: 10px;
+}
 #signupWrap input {
     border-radius: 5px;
 }

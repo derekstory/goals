@@ -78,11 +78,10 @@ echo '<div id="signupTopWrap" class="large-12 row">
        <div class="columns large-6 columns">
          <h1 id="signin">Sign In</h1>
 	<form method="post" action=""> 
-          <div class="columns topInputError large-4">
+          <div class="columns topInput large-4">
             <input type="text" id="signinTextUsername" placeholder="Username" name="user_name">
-	    <h5 class="error">Username/Password did not match</h5>
           </div>
-          <div class="large-4 columns topInputError">
+          <div class="large-4 columns topInput">
             <input type="password" id="signinTextPassword" placeholder="Password" class="large-2 columns" name="user_password">
           </div>
 	  <input name="action" type="hidden" value="login" />
@@ -99,15 +98,15 @@ echo '<div id="signupTopWrap" class="large-12 row">
 
                 if(empty($_POST['user_name']))
                 {
-                        $errors[] =  header('location:signin_error.php');
+                        $errors[] =  header('location:signin_error.php#signin');
                 }
                 if(empty($_POST['user_password']))
                 {
-                        $errors[] =  header('location:signin_error.php');
+                        $errors[] =  header('location:signin_error.php#signin');
                 }
                 if(!empty($errors))
                 {
-                        $errors[] =  header('location:signin_error.php');
+                        $errors[] =  header('location:signin_error.php#signin');
                 }
                 elseif($_POST['action']=="login")
                 {
@@ -131,7 +130,7 @@ echo '<div id="signupTopWrap" class="large-12 row">
                         {
                                 if(mysql_num_rows($result) == 0)
                                 {
-                        	$errors[] =  header('location:signin_error.php');	
+                        	$errors[] =  header('location:signin_error.php#signin');	
                                 }
                                 else
                                 {
@@ -162,7 +161,8 @@ if($_SERVER['REQUEST_METHOD'] != 'POST')
   echo'<div id="signinBodyWrap">
       <div id="signinTitle"></div>
       <div class="row columns large-5" id="signupWrap">
-         <h1 id="signup">Sign Up.&nbsp; Its free.</h1>
+         <h1 class="usernameError">Username already exist.</h1>
+         <h4 class="usernameTryAgain">Please try again.</h4>
 
         <form method="post" action="" data-abide>
             <div>
@@ -178,7 +178,7 @@ if($_SERVER['REQUEST_METHOD'] != 'POST')
 		<small class="error">Password does not match.</small>
             </div>
             <div id="terms">
-                <h5><a href="termsandconditions.html">Terms and Conditions</a></h5>
+                <h5><a href="termsandconditions.php">Terms and Conditions</a></h5>
             </div>
 	  <input name="action" type="hidden" value="signup" />
             <input type="submit" id="signupSubmit" class="submit" value="Sign-Up">
@@ -194,7 +194,8 @@ elseif($_POST['action']=="signup")
         $error[] =  header('location:username_error.php#signupWrap');	                        
         }
         else
- {
+
+        {
                 $sql = "INSERT INTO
                         users(                                   user_name, 
                                                                  user_pass, 
@@ -250,7 +251,6 @@ elseif($_POST['action']=="signup")
 	       }
        }
 }         
-      
 ?>
 
     <div class="row columns large-6">

@@ -6,12 +6,19 @@ html, body {
     font-family: 'Gruppo', cursive;
 
 }
+
 body {
     display: none;
+  height: 100%; 
+  width: 100%;
+  background: url(images/river_blur.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 #backgroundFixed {
   z-index: -100;
-  position: fixed;
   height: 100%; 
   width: 100%;
   background: url(images/river_blur.jpg) no-repeat center center fixed; 
@@ -38,9 +45,7 @@ h1 {
     font-size: 2em;
 }
 /*-----------Home---------*/
-#home {
-    background: transparent,
-}
+
 #user {
     background: rgba(0, 0, 0, 0);
     width: 100%;
@@ -490,8 +495,17 @@ select option {
     display: none;
 }
 /*-------------Reponsive-------------*/
-
-
+@media only screen and (max-width:60em){
+    #home {
+	height: 100%; 
+	width: 100%;
+	background: url(images/river_blur.jpg) no-repeat center center; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+    }
+}
 @media only screen and (max-width:900px){
     .zoom {
     font-size: 150%;
@@ -525,241 +539,6 @@ select option {
   }
 }
 
-/*-----------Sign-In Page-------------*/
-
-#signinBackground {
-  z-index: -100;
-  position: fixed;
-  height: 100%; 
-  width: 100%;
-  background: url(images/river_blur.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-
-#signinTop {
-    padding-top: 1.1em;
-    padding-bottom: 1em;
-    height: 5em;
-    width: 100%;
-    margin: 0;
-    background: #ffffff;
-}
-#signinTopError {
-    padding-top: 1.1em;
-    padding-top: 1.1em;
-    padding-bottom: 1em;
-    height: 5.5em;
-    width: 100%;
-    margin: 0;
-    background: #ffffff;
-    color: red;
-}
-#signinTopWrap {
-    float: right;
-}
-#signinTextUsername, #signinTextPassword {
-    border: 1px #000 solid;
-    color: black;
-    width: 220px;
-    height: 3em;
-    display: inline;
-    margin-right: 1em;
-    border-radius: 2px;
-}
-#signinTextUsernameError, #signinTextPasswordError {
-    border: 1px red solid;
-    color: black;
-    width: 220px;
-    height: 3em;
-    display: inline;
-    margin-right: 1em;
-    border-radius: 2px;
-    margin-bottom: 5px;
-}
-input#signinTextUsername::-webkit-input-placeholder {
-    color: black;
-}
-input#signinTextUsername:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: black;
-}
-input#signinTextUsername::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: black;
-}
-input#signinTextUsername:-ms-input-placeholder { /* Internet Explorer 10+ */
-    color: black;
-}
-input#signinTextPassword::-webkit-input-placeholder {
-    color: black;
-}
-input#signinTextPassword:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: black;
-}
-input#signinTextPassword::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: black;
-}
-input#signinTextPassword:-ms-input-placeholder { /* Internet Explorer 10+ */
-    color: black;
-}
-#signinSubmit {
-    cursor: pointer;
-    border: 1px #666 solid;
-    background: #666666;
-    color: #fff;
-    width: 100px;
-    height: 3em;
-    display: inline;
-    margin-right: 1em;
-    border-radius: 3px;
-}
-#signupSubmit {
-    cursor: pointer;
-    border: 1px #666 solid;
-    background: #ffffff;
-    color: #666666;
-    width: 100px;
-    height: 3.7em;
-    line-height: 3em;
-    display: block;
-    margin-right: 1em;
-    border-radius: 3px;
-    margin-top: 1em;
-}
-#signinSubmit:hover, #signupSubmit:hover {
-    background: #56E895;
-    color: white;
-}
-
-#signupWrap {
-    background: rgba(0,0,0,.7);
-    padding: 1em;
-    border-radius: 10px;
-    width: 500px;
-    margin: 6em;
-}
-#signupWrap h1 { 
-    color: white;
-    margin: 0; 
-    margin-bottom: 1em;
-    padding: 0;
-    font-size: 1.7em;
-}
-
-#signinWrap {
-    background: rgba(0,0,0,.7);
-    padding: 1em;
-    border-radius: 10px;
-    width: 500px;
-}
-#signinWrap h1 { 
-    color: white;
-    margin: 0; 
-    margin-bottom: 1em;
-    padding: 0;
-    font-size: 1.7em;
-}
-#signupTextUsername, #signupTextPassword, #signupTextPasswordConfirm {
-    border: 1px #fff solid;
-    background: #666;
-    color: white;
-    width: 300px;
-    height: 3em;
-    display: block;
-    border-radius: 2px;
-    margin-top: .8em;
-}
-input#signupTextUsername::-webkit-input-placeholder {
-    color: white;
-}
-input#signupTextUsername:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: white;
-}
-input#signupTextUsername::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: white;
-}
-input#signupTextUsername:-ms-input-placeholder { /* Internet Explorer 10+ */
-    color: white;
-}
-input#signupTextPassword::-webkit-input-placeholder {
-    color: white;
-}
-input#signupTextPassword:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: white;
-}
-input#signupTextPassword::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: white;
-}
-input#signupTextPassword:-ms-input-placeholder { /* Internet Explorer 10+ */
-    color: white;
-}
-input#signupTextPasswordConfirm::-webkit-input-placeholder {
-    color: white;
-}
-input#signupTextPasswordConfirm:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color: white;
-}
-input#signupTextPasswordConfirm::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: white;
-}
-input#signupTextPasswordConfirm:-ms-input-placeholder { /* Internet Explorer 10+ */
-    color: white;
-}
-#terms h5 a {
-    color: white;
-}
-#terms h5 a:hover {
-    text-decoration: underline;
-}
-#signupInfoSection {
-    display: block;
-    margin: 0;
-    height: 400px;
-    width: 100%;
-    background: #333;
-}
-
-/*---------Sign In Mobile---------*/
-@media only screen and (max-width: 900px){
-  #signupTextUsername, #signupTextPassword, #signupTextPasswordConfirm, #signupSubmit{
-  width: 400px;
-  margin-left: auto;
-  margin-right: auto;
-  }
-#signupWrap {
-    padding: 10px;
-    background: rgba(0,0,0,.7);
-    width: 100%;
-    margin: 0;
-    border-radius: 5px;
-    margin-top: 30px;
-    margin-bottom: 50px;
-    border-radius: 0;
-    text-align: center;
-}
-}
-@media only screen and (max-width: 650px){
-    #signinTop, #signinTopError {
-	height: 12em;
-	padding-top: 1em;
-	padding-bottom: 1em;
-}
-    #signinTextUsername, #signinTextPassword, #signinTextUsernameError, #signinTextPasswordError, #signinSubmit, #signinTopWrap {
-	width: 100%;
-	margin-right: 0;
-    }
-    #signupTextUsername, #signupTextPassword,  #signupTextUsername, #signupTextPassword, #signupTextPasswordConfirm, #signupSubmit{
-	width: 100%;
-    }
-    #signinErrorWrap {
-	padding: 0;
-    }
-    #signinLogo {
-	width: 100%;
-	margin: 0;
-    }
-}
 
 
 /*******Page Load Spin**********/
