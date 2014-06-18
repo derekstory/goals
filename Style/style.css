@@ -9,29 +9,19 @@ html, body {
 
 body {
     display: none;
-  height: 100%; 
-  width: 100%;
-  background: url(images/river_blur.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-}
-#backgroundFixed {
-  z-index: -100;
-  height: 100%; 
-  width: 100%;
-  background: url(images/river_blur.jpg) no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+    height: 100%; 
+    width: 100%;
+    background: url(images/river_blur.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }
 a {
     outline: 0;
 }
 .zoom {
-   font-size: 160%;
+    font-size: 160%;
 }
 
 /*----------Sections------------*/
@@ -53,7 +43,7 @@ h1 {
     height: 2.6em;  
     position: fixed;
     opacity: 1;
-   -webkit-transition: all .8s ease;
+    -webkit-transition: all .8s ease;
     -moz-transition: all .8s ease;
     -ms-transition: all .8s ease;
     -o-transition: all .8s ease;
@@ -121,11 +111,16 @@ h1 {
 
 }
 #ratingTitle {
-    color: #44444;
+    color: #444;
     font-weight: bold;
     font-size: .8em;
     margin-left: 1px;
     margin-bottom: 5px;
+}
+.rateThisWrap h3 {
+    line-height: 2em !important;
+    position: absolute !important;
+    margin-left:1em !important;
 }
 .rateThis {
     font-size: 1em;
@@ -137,9 +132,9 @@ h1 {
     -moz-transition: all .8s ease;
     -ms-transition: all .8s ease;
     -o-transition: all .8s ease;
-     transition: all .8s ease;
-     border-radius: 5px;
-     transition-delay: .3s;
+    transition: all .8s ease;
+    border-radius: 5px;
+    transition-delay: .3s;
 }
 .rateThis:hover {
     border: 1px solid #444;
@@ -155,10 +150,10 @@ h1 {
     -moz-transition: all .8s ease;
     -ms-transition: all .8s ease;
     -o-transition: all .8s ease;
-     transition: all .8s ease;
-     border-radius: 5px;
-     transition-delay: .3s;
-     box-shadow: 1px 1px 5px 0px #444;
+    transition: all .8s ease;
+    border-radius: 5px;
+    transition-delay: .3s;
+    box-shadow: 1px 1px 5px 0px #444;
 }
 .rateThisDay:hover {
     border: 1px solid #444;
@@ -183,7 +178,9 @@ textarea:focus, input:focus{
     display: inline;
     border: 1px solid #ddd;
     font-size: 1em;
-    float: left;
+    height: 5em;
+    margin-top: .2em;
+
 }
 .rateThis h3, .rateThisDay h3 {
     margin-top: 5px;
@@ -192,7 +189,7 @@ textarea:focus, input:focus{
     font-size: 1.2em;
     font-family: 'Simonetta', cursive;
     line-height: 1.6em;
- }
+}
 
 #submit {
     width: 100%;
@@ -228,13 +225,13 @@ textarea:focus, input:focus{
     -moz-transition: all .8s ease;
     -ms-transition: all .8s ease;
     -o-transition: all .8s ease;
-     transition: all .8s ease;
-     transition-delay: .3s;
-     overflow: hidden;
-     color: #fff;
-     border-left: 1px solid #000;
-     border-right: 1px solid #000;
-     line-height: 1.4em;
+    transition: all .8s ease;
+    transition-delay: .3s;
+    overflow: hidden;
+    color: #fff;
+    border-left: 1px solid #000;
+    border-right: 1px solid #000;
+    line-height: 1.4em;
 }
 .updateRating:hover {
     background: #56E895;
@@ -338,10 +335,10 @@ input#addGoalText::-ms-input-placeholder { /* Internet Explorer 10+ */
     -moz-transition: all .8s ease;
     -ms-transition: all .8s ease;
     -o-transition: all .8s ease;
-     transition: all .8s ease;
-     font-size: 1em;
-     overflow: hidden;
-     color: black;
+    transition: all .8s ease;
+    font-size: 1em;
+    overflow: hidden;
+    color: black;
 }
 #addGoalText:focus {
     background: #fff;
@@ -420,7 +417,7 @@ input#addGoalText::-ms-input-placeholder { /* Internet Explorer 10+ */
     -moz-transition: all .8s ease;
     -ms-transition: all .8s ease;
     -o-transition: all .8s ease;
-     transition: all .8s ease;
+    transition: all .8s ease;
 }
 .metricsSectionWrap:hover {
     border: 1px solid #fff;    
@@ -451,7 +448,7 @@ input#addGoalText::-ms-input-placeholder { /* Internet Explorer 10+ */
     -moz-transition: all .8s ease;
     -ms-transition: all .8s ease;
     -o-transition: all .8s ease;
-     transition: all .8s ease;
+    transition: all .8s ease;
 }
 .metricsSectionWrap:hover  .metricsSectionTitle {
     box-shadow: 1px 1px 5px 0px #fff;
@@ -508,46 +505,43 @@ select option {
 }
 @media only screen and (max-width:900px){
     .zoom {
-    font-size: 150%;
+	font-size: 150%;
     }
     #ratewrap {
-    margin: auto;
-    width: 90%;
+	margin: auto;
+	width: 90%;
     }
- 
+    
     .updateRating {
-    height: 1.4em;
+	height: 1.4em;
     }
     h1 {
-    text-align: center;
+	text-align: center;
     }
     .editWrap {
-    margin: .4em;
-    margin-bottom: 2em;
-    font-size: 1.3em;
-}
+	margin: .4em;
+	margin-bottom: 2em;
+	font-size: 1.3em;
+    }
 }
 @media only screen and (max-width: 450px){
-  .rateThisDay, .rateThis, .editWrap, .editTitle, .metricsWrap, .metricsSectionTitle {
-    font-size: 1.6em;4
-  }
-  .removeWrap {
-  font-size: 1.2em;
-}
-  .removeOption {
-   font-size: .7em;   
-  }
+    .removeWrap {
+
+    }
+    .removeOption {
+	font-size: .7em;   
+    }
 }
 
 
 
 /*******Page Load Spin**********/
 .loader {
-	position: fixed;
-	left: 0px;
-	top: 0px;
-	width: 100%;
-	height: 100%;
-	z-index: 9999;
-	background: url('images/loader.gif') 50% 50% no-repeat rgb(249,249,249);
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('images/loader.gif') 50% 50% no-repeat rgb(249,249,249);
 }

@@ -12,7 +12,7 @@ $initial = mysql_query("SELECT *
   {
     if($initialTotal < 1)
     {
-    echo '<div>too bad yo</div>';
+    echo '<div style="text-align: center; padding: 2em;">No goals have been created. <a href="#goals">Get started</a> now.</div>';
     }
     else
     {
@@ -168,9 +168,6 @@ $initial = mysql_query("SELECT *
        }
   }
 ?>
-
-
-     
 
 <script >
 $(".selected").text(function () {

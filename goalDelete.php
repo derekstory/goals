@@ -13,7 +13,7 @@
     {
     if($rateTotal < 1)
         {
-	echo '<h4>Nothing is here yo</h4>';
+	echo '<h4 style="text-align: center; padding: .3em;">You have no goals to manage.</h4>';
 	}
 	else
 	while($rateList = mysql_fetch_array($rate))
