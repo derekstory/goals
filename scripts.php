@@ -19,6 +19,7 @@ $('body').fadeIn(1000);
 
 $("#goalLoad").load("goalLoad.php");
 $("#goalDelete").load("goalDelete.php");
+$("#metricsLoad").load("metricsLoad.php");
 
 $(function() {
   $('a[href*=#]:not([href=#])').click(function() {

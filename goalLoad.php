@@ -194,6 +194,7 @@ $('select.postSelect').change(function () {
         type: 'POST',
         success: function (data) {
             $("#goalLoad").load("goalLoad.php");
+            $("#metricsLoad").load("metricsLoad.php");
             console.log(data);
             $("#success").css('opacity', '1').fadeTo(3000, 0);
         },
@@ -210,6 +211,7 @@ $('select.postSelectUpdate').change(function () {
         type: 'POST',
         success: function (data) {
             $("#goalLoad").load("goalLoad.php");
+            $("#metricsLoad").load("metricsLoad.php");
             console.log(data);
             $("#success").css('opacity', '1').fadeTo(3000, 0);
         },
@@ -226,6 +228,7 @@ $('select.happyScore').change(function () {
         type: 'POST',
         success: function (data) {
             $("#goalLoad").load("goalLoad.php");
+            $("#metricsLoad").load("metricsLoad.php");
             console.log(data);
             $("#success").css('opacity', '1').fadeTo(3000, 0);
         },
@@ -242,6 +245,7 @@ $('select.happyScoreUpdate').change(function () {
         type: 'POST',
         success: function (data) {
             $("#goalLoad").load("goalLoad.php");
+            $("#metricsLoad").load("metricsLoad.php");
             console.log(data);
             $("#success").css('opacity', '1').fadeTo(3000, 0);
         },

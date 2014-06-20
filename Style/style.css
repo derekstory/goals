@@ -462,17 +462,27 @@ input#addGoalText::-ms-input-placeholder { /* Internet Explorer 10+ */
     margin-top: .3em;
 }
 .metricsPreTitle {
+    text-align: center;
     font-size: 1.3em;
     display: block;
     color: #fff;
 }
 .metricsTitle {
-    font-size: .8em;
-    display: inline;
+    text-align: center;
+    margin-top: 1em;
+    font-size: 1em;
+    display: block;
     color: #aaa;
 }
+.metricsTitleSub {
+    text-align: center;
+    margin-top: .4em;
+    font-size: .6em;
+    display: block;
+    color: #ddd;
+}
 .metricsGrade {
-    font-size: .8em;
+    font-size: 1em;
     display: inline;
     margin-left: .2em;
 }
