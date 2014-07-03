@@ -58,6 +58,7 @@ e.preventDefault();
         success: function (data) {
             $("#goalDelete").load("goalDelete.php");
 	    $("#goalLoad").load("goalLoad.php");	
+	    $("#metricsLoad").load("metricsLoad.php");	
             console.log(data);
         },
         error: function (data) {

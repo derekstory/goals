@@ -46,19 +46,19 @@ $initial = mysql_query("SELECT *
 	          <div class="rateThisWrap">
 	            <select name="postSelect" class="postSelect">
 		      <option class="selected"></option>
-		      <option value="120">A+</option>
-		      <option value="110">A</option>
-		      <option value="100">A-</option>
-		      <option value="90">B+</option>
-		      <option value="80">B</option>
-		      <option value="70">B-</option>
-		      <option value="60">C+</option>
-		      <option value="50">C</option>
-		      <option value="40">C-</option>
-		      <option value="30">D+</option>
-		      <option value="20">D</option>
-		      <option value="10">D-</option>
-		      <option value="0">F</option>
+		      <option value="130">A+</option>
+		      <option value="120">A</option>
+		      <option value="110">A-</option>
+		      <option value="100">B+</option>
+		      <option value="90">B</option>
+		      <option value="80">B-</option>
+		      <option value="70">C+</option>
+		      <option value="60">C</option>
+		      <option value="50">C-</option>
+		      <option value="40">D+</option>
+		      <option value="30">D</option>
+		      <option value="20">D-</option>
+		      <option value="10">F</option>
 	            </select>
 		    <input  type="hidden" name="postTitle" value="' . $postTitle . '"/>
 	            <h3>' . $postTitle . '</h3>
@@ -74,19 +74,19 @@ $initial = mysql_query("SELECT *
             	    <div class="rateThisWrap">
             	    <select name="postSelectUpdate" class="postSelectUpdate">
 	     	      <option class="selected" >' . $rateScore . '</option>
-	     	      <option value="120">A+</option>
-		      <option value="110">A</option>
-		      <option value="100">A-</option>
-		      <option value="90">B+</option>
-		      <option value="80">B</option>
-		      <option value="70">B-</option>
-		      <option value="60">C+</option>
-		      <option value="50">C</option>
-		      <option value="40">C-</option>
-		      <option value="30">D+</option>
-		      <option value="20">D</option>
-		      <option value="10">D-</option>
-		      <option value="0">F</option>
+	     	      <option value="130">A+</option>
+		      <option value="120">A</option>
+		      <option value="110">A-</option>
+		      <option value="100">B+</option>
+		      <option value="90">B</option>
+		      <option value="80">B-</option>
+		      <option value="70">C+</option>
+		      <option value="60">C</option>
+		      <option value="50">C-</option>
+		      <option value="40">D+</option>
+		      <option value="30">D</option>
+		      <option value="20">D-</option>
+		      <option value="10">F</option>
             	    </select>
             	    <h3>' . $rateTitle . '</h3>
 		    <input  type="hidden" name="rateID" value="' . $rateID . '"/>
@@ -112,19 +112,19 @@ $initial = mysql_query("SELECT *
 	       <div class="rateThisWrap">
 	        <select name="happyScore" class="happyScore">
 		      <option class="selected"></option>
-	              <option value="120">A+</option>
-		      <option value="110">A</option>
-		      <option value="100">A-</option>
-		      <option value="90">B+</option>
-		      <option value="80">B</option>
-		      <option value="70">B-</option>
-		      <option value="60">C+</option>
-		      <option value="50">C</option>
-		      <option value="40">C-</option>
-		      <option value="30">D+</option>
-		      <option value="20">D</option>
-		      <option value="10">D-</option>
-		      <option value="0">F</option>
+	              <option value="130">A+</option>
+		      <option value="120">A</option>
+		      <option value="110">A-</option>
+		      <option value="100">B+</option>
+		      <option value="90">B</option>
+		      <option value="80">B-</option>
+		      <option value="70">C+</option>
+		      <option value="60">C</option>
+		      <option value="50">C-</option>
+		      <option value="40">D+</option>
+		      <option value="30">D</option>
+		      <option value="20">D-</option>
+		      <option value="10">F</option>
 	        </select>
 	        <h3>Rate your overall happiness today.</h3>
 	        <h5 class="happyMessage">**Base this on your mood and experience - this is not a overall grade of your goals.**</h5>
@@ -143,19 +143,19 @@ $initial = mysql_query("SELECT *
 	       <div class="rateThisWrap">
 	        <select name="happyScoreUpdate" class="happyScoreUpdate">
 		      <option class="selected">' . $happyScore . '</option>
-	              <option value="120">A+</option>
-		      <option value="110">A</option>
-		      <option value="100">A-</option>
-		      <option value="90">B+</option>
-		      <option value="80">B</option>
-		      <option value="70">B-</option>
-		      <option value="60">C+</option>
-		      <option value="50">C</option>
-		      <option value="40">C-</option>
-		      <option value="30">D+</option>
-		      <option value="20">D</option>
-		      <option value="10">D-</option>
-		      <option value="0">F</option>
+	              <option value="130">A+</option>
+		      <option value="120">A</option>
+		      <option value="110">A-</option>
+		      <option value="100">B+</option>
+		      <option value="90">B</option>
+		      <option value="80">B-</option>
+		      <option value="70">C+</option>
+		      <option value="60">C</option>
+		      <option value="50">C-</option>
+		      <option value="40">D+</option>
+		      <option value="30">D</option>
+		      <option value="20">D-</option>
+		      <option value="10">F</option>
 	        </select>
    	        <input  type="hidden" name="happyID" value="' . $happyID . '"/>
 	        <h3>Rate your overall happiness today.</h3>
@@ -171,19 +171,19 @@ $initial = mysql_query("SELECT *
 
 <script >
 $(".selected").text(function () {
-    return $(this).text().replace("120", "A+")
-                         .replace("110", "A")
-                         .replace("100", "A-")
-                         .replace("90", "B+")
-                         .replace("80", "B")
-                         .replace("70", "B-")
-                         .replace("60", "C+")
-                         .replace("50", "C")
-                         .replace("40", "C-")
-                         .replace("30", "D+")
-                         .replace("20", "D")
-                         .replace("10", "D-")
-                         .replace("0", "F")
+    return $(this).text().replace("130", "A+")
+                         .replace("120", "A")
+                         .replace("110", "A-")
+                         .replace("100", "B+")
+                         .replace("90", "B")
+                         .replace("80", "B-")
+                         .replace("70", "C+")
+                         .replace("60", "C")
+                         .replace("50", "C-")
+                         .replace("40", "D+")
+                         .replace("30", "D")
+                         .replace("20", "D-")
+                         .replace("10", "F")
 });
 
 

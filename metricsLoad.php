@@ -2,9 +2,9 @@
 include'connect.php';
 include 'head.php';
 
-//24 hour Average of all goal ratings 
+//Today Average of all Goal ratings
 
-$avgToday = mysql_query("SELECT avg(rating_score) FROM `rating`, `users` WHERE rating_author = user_name && user_name = '" . $_SESSION['user_name'] . "'  && rating_date > DATE_SUB(NOW(), INTERVAL 1 DAY)");
+$avgToday = mysql_query("SELECT avg(rating_score) FROM `rating`, `users` WHERE rating_author = user_name && user_name = '" . $_SESSION['user_name'] . "'  && DATE(`rating_date`) = CURDATE()");
 while($avgRowToday = mysql_fetch_array($avgToday))
 {
 $averageToday = $avgRowToday["avg(rating_score)"];
@@ -39,6 +39,15 @@ $average = $avgRow["avg(rating_score)"];
 $avgRoundAlltime = round($average, -1);
 }
 
+
+//Individual goal statistics
+$indie = mysql_query("SELECT *
+                        FROM `post`, `users`
+			WHERE post_author = user_name 
+			&& user_name = '" . $_SESSION['user_name'] . "'
+			");
+$indieTotal = mysql_num_rows($indie);
+
 ?>
 
  <div class="metricsSectionWrap" id="allTimeWrap">
@@ -46,8 +55,8 @@ $avgRoundAlltime = round($average, -1);
       <div class="metricsWrap">
 	<h6 class="metricsPreTitle">Goals</h6>
 	<div class="metricsRateWrap">
-	  <h6 class="metricsTitle">Average for all goals:</h6>
-	  <h6 class="metricsTitleSub">24 Hours:
+	  <h6 class="metricsTitle">-Average for all goals- </h6>
+	  <h6 class="metricsTitleSub">Today:
 	      <span>
                  <h6 class="metricsGrade math"><?php echo '' . $avgRoundToday . ''; ?></h6>
               </span>
@@ -68,14 +77,34 @@ $avgRoundAlltime = round($average, -1);
               </span>
 	  </h6>
 	</div>
+
+
+
 	<div class="metricsRateWrap">
-	  <h6 class="metricsTitle">Most improved goal:</h6>
-	  <h6 class="metricsGrade"></h6>
+	  <h6 class="metricsTitle">-Individual Goal Averages-</h6>
+
+	<?php
+	while($indieList = mysql_fetch_array($indie))
+	{
+	   $indieTitle = $indieList["post_title"];
+	   if($indieTotal != 0)
+	   {	
+	     echo '<h6 class="metricsTitleSub">
+	         <span>
+                    <h6 class="metricsGrade math">' .$indieTitle. '</h6>
+                 </span>
+	     </h6>
+
+	     <div class="timeDescriptWrap">
+	        <h6 class="timeDescript">7 days: A &nbsp;&nbsp;|&nbsp;&nbsp; 30 days: C+ &nbsp;&nbsp;|&nbsp;&nbsp; All time: B-</h6>
+	     </div>';
+	   }
+	}
+	?>
+
 	</div>
-	<div class="metricsRateWrap">
-	  <h6 class="metricsTitle">All time average:</h6>
-	  <h6 class="metricsGrade math"></h6>
-	</div>
+
+
 	
 	<div class="break"></div>
 
@@ -97,18 +126,19 @@ $avgRoundAlltime = round($average, -1);
 
 <script >
 $(".math").text(function () {
-    return $(this).text().replace("120", "A+")
-                         .replace("110", "A")
-                         .replace("100", "A-")
-                         .replace("90", "B+")
-                         .replace("80", "B")
-                         .replace("70", "B-")
-                         .replace("60", "C+")
-                         .replace("50", "C")
-                         .replace("40", "C-")
-                         .replace("30", "D+")
-                         .replace("20", "D")
-                         .replace("10", "D-")
-                         .replace("0", "F")
+    return $(this).text().replace("130", "A+")
+                         .replace("120", "A")
+                         .replace("110", "A-")
+                         .replace("100", "B+")
+                         .replace("90", "B")
+                         .replace("80", "B-")
+                         .replace("70", "C+")
+                         .replace("60", "C")
+                         .replace("50", "C-")
+                         .replace("40", "D+")
+                         .replace("30", "D")
+                         .replace("20", "D-")
+                         .replace("10", "F")
+                         .replace("0", "--")
 });
 </script>

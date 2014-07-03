@@ -88,6 +88,7 @@ type:'POST',
 success:function(data){
 $("#goalLoad").load("goalLoad.php");
 $("#goalDelete").load("goalDelete.php");
+$("#metricsLoad").load("metricsLoad.php");
 console.log(data);
 $("#success").css('opacity', '1').fadeTo(3000,0);
 $('#addGoalText').val("");

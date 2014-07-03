@@ -470,7 +470,8 @@ input#addGoalText::-ms-input-placeholder { /* Internet Explorer 10+ */
 .metricsTitle {
     text-align: center;
     margin-top: 1em;
-    font-size: 1em;
+    margin-bottom: .7em;
+    font-size: 1.1em;
     display: block;
     color: #aaa;
 }
@@ -500,6 +501,16 @@ select option {
 }
 .selected, .selected:hover {
     display: none;
+}
+timeDescriptWrap {
+    text-align: center;
+    width: 100%;
+}
+.timeDescript {
+    margin-top: .5em;
+    margin-bottom: 2em;
+    font-size: .4em;
+    text-align: center; 
 }
 /*-------------Reponsive-------------*/
 @media only screen and (max-width:60em){
