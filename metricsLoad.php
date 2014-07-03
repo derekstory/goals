@@ -78,33 +78,54 @@ $indieTotal = mysql_num_rows($indie);
 	  </h6>
 	</div>
 
-
-
 	<div class="metricsRateWrap">
 	  <h6 class="metricsTitle">-Individual Goal Averages-</h6>
 
 	<?php
 	while($indieList = mysql_fetch_array($indie))
 	{
-	   $indieTitle = $indieList["post_title"];
-	   if($indieTotal != 0)
-	   {	
-	     echo '<h6 class="metricsTitleSub">
-	         <span>
-                    <h6 class="metricsGrade math">' .$indieTitle. '</h6>
-                 </span>
-	     </h6>
+	  $indieTitle = $indieList["post_title"];
+	  $indieAuthor = $indieList["post_author"];
+	  $indieRatingWeek = mysql_query("SELECT avg(rating_score) FROM `rating`, `post` WHERE rating_author = '$indieAuthor' && rating_title = '$indieTitle' && rating_date > DATE_SUB(NOW(), INTERVAL 1 WEEK)");
+	  $indieRatingMonth = mysql_query("SELECT avg(rating_score) FROM `rating`, `post` WHERE rating_author = '$indieAuthor' && rating_title = '$indieTitle' && rating_date > DATE_SUB(NOW(), INTERVAL 1 MONTH)");
+	  $indieRating = mysql_query("SELECT avg(rating_score) FROM `rating`, `post` WHERE rating_author = '$indieAuthor' AND rating_title = '$indieTitle'");
 
-	     <div class="timeDescriptWrap">
-	        <h6 class="timeDescript">7 days: A &nbsp;&nbsp;|&nbsp;&nbsp; 30 days: C+ &nbsp;&nbsp;|&nbsp;&nbsp; All time: B-</h6>
-	     </div>';
-	   }
+	      while($indieAvgWeek = mysql_fetch_array($indieRatingWeek))
+	      {
+	      $indieAvgWeek = $indieAvgWeek["avg(rating_score)"];
+	      $indieAvgWeekRound = round($indieAvgWeek, -1);
+
+   	      while($indieAvgMonth = mysql_fetch_array($indieRatingMonth))
+	      {
+	      $indieAvgMonth = $indieAvgMonth["avg(rating_score)"];
+	      $indieAvgMonthRound = round($indieAvgMonth, -1);
+
+	      while($indieAvgAll = mysql_fetch_array($indieRating))
+	      {
+	      $indieAvg = $indieAvgAll["avg(rating_score)"];
+	      $indieAvgAlltime = round($indieAvg, -1);
+
+
+
+
+	         if($indieTotal != 0)
+	         {	
+	             echo '<h6 class="metricsTitleSub">
+		        <span>
+		           <h6 class="metricsGrade">' .$indieTitle. '</h6>
+		        </span>
+		     </h6>
+
+		     <div class="timeDescriptWrap">
+		        <h6 class="timeDescript">7 days: <span class="math">' .$indieAvgWeekRound. '</span> &nbsp;&nbsp;|&nbsp;&nbsp; 30 days: <span class="math">' .$indieAvgMonthRound. '</span> &nbsp;&nbsp;|&nbsp;&nbsp; All time: <span class="math">' .$indieAvgAlltime. '</span> </h6>
+		     </div>';
+		  }
+	      }
+	      }
+	      }
 	}
 	?>
-
 	</div>
-
-
 	
 	<div class="break"></div>
 
