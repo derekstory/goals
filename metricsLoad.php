@@ -39,6 +39,37 @@ $average = $avgRow["avg(rating_score)"];
 $avgRoundAlltime = round($average, -1);
 }
 
+//Today's Average of Happiness rating
+$happyToday = mysql_query("SELECT avg(happy_score) FROM `happy`, `users` WHERE happy_author = user_name && user_name = '" . $_SESSION['user_name'] . "'  && DATE(`happy_date`) = CURDATE()");
+while($happyRowToday = mysql_fetch_array($happyToday))
+{
+$happyAvgToday = $happyRowToday["avg(happy_score)"];
+$happyRoundToday = round($happyAvgToday, -1);
+}
+
+//Week's Average of Happiness rating
+$happyWeek = mysql_query("SELECT avg(happy_score) FROM `happy`, `users` WHERE happy_author = user_name && user_name = '" . $_SESSION['user_name'] . "'  && DATE(`happy_date`) > DATE_SUB(NOW(), INTERVAL 1 WEEK)");
+while($happyRowWeek = mysql_fetch_array($happyWeek))
+{
+$happyAvgWeek = $happyRowWeek["avg(happy_score)"];
+$happyRoundWeek = round($happyAvgWeek, -1);
+}
+
+//Month's Average of Happiness rating
+$happyMonth = mysql_query("SELECT avg(happy_score) FROM `happy`, `users` WHERE happy_author = user_name && user_name = '" . $_SESSION['user_name'] . "'  && DATE(`happy_date`) > DATE_SUB(NOW(), INTERVAL 1 MONTH)");
+while($happyRowMonth = mysql_fetch_array($happyMonth))
+{
+$happyAvgMonth = $happyRowMonth["avg(happy_score)"];
+$happyRoundMonth = round($happyAvgMonth, -1);
+}
+
+//All Time Average of Happiness rating
+$happyAlltime = mysql_query("SELECT avg(happy_score) FROM `happy`, `users` WHERE happy_author = user_name && user_name = '" . $_SESSION['user_name'] . "'");
+while($happyRowAlltime = mysql_fetch_array($happyAlltime))
+{
+$happyAvgAlltime = $happyRowAlltime["avg(happy_score)"];
+$happyRoundAlltime = round($happyAvgAlltime, -1);
+}
 
 //Individual goal statistics
 $indie = mysql_query("SELECT *
@@ -85,10 +116,12 @@ $indieTotal = mysql_num_rows($indie);
 	while($indieList = mysql_fetch_array($indie))
 	{
 	  $indieTitle = $indieList["post_title"];
+
 	  $indieAuthor = $indieList["post_author"];
 	  $indieRatingWeek = mysql_query("SELECT avg(rating_score) FROM `rating`, `post` WHERE rating_author = '$indieAuthor' && rating_title = '$indieTitle' && rating_date > DATE_SUB(NOW(), INTERVAL 1 WEEK)");
 	  $indieRatingMonth = mysql_query("SELECT avg(rating_score) FROM `rating`, `post` WHERE rating_author = '$indieAuthor' && rating_title = '$indieTitle' && rating_date > DATE_SUB(NOW(), INTERVAL 1 MONTH)");
 	  $indieRating = mysql_query("SELECT avg(rating_score) FROM `rating`, `post` WHERE rating_author = '$indieAuthor' AND rating_title = '$indieTitle'");
+	  $indieTitle = stripslashes($indieTitle);
 
 	      while($indieAvgWeek = mysql_fetch_array($indieRatingWeek))
 	      {
@@ -104,9 +137,6 @@ $indieTotal = mysql_num_rows($indie);
 	      {
 	      $indieAvg = $indieAvgAll["avg(rating_score)"];
 	      $indieAvgAlltime = round($indieAvg, -1);
-
-
-
 
 	         if($indieTotal != 0)
 	         {	
@@ -131,17 +161,35 @@ $indieTotal = mysql_num_rows($indie);
 
 	<h6 class="metricsPreTitle">Happiness</h6>
 	<div class="metricsRateWrap">
-	  <h6 class="metricsTitle">All time average:</h6>
+	  <h6 class="metricsTitle">Average:</h6>
+
+ <h6 class="metricsTitleSub">Today:
+	      <span>
+                 <h6 class="metricsGrade math"><?php echo '' . $happyRoundToday . ''; ?></h6>
+              </span>
+	  </h6>
+	   <h6 class="metricsTitleSub">7 days:
+	      <span>
+                 <h6 class="metricsGrade math"><?php echo '' . $happyRoundWeek . ''; ?></h6>
+              </span>
+	  </h6>
+	  <h6 class="metricsTitleSub">30 Days:
+	      <span>
+                 <h6 class="metricsGrade math"><?php echo '' . $happyRoundMonth . ''; ?></h6>
+              </span>
+	  </h6>
+	   <h6 class="metricsTitleSub">All Time:
+	      <span>
+                 <h6 class="metricsGrade math"><?php echo '' . $happyRoundAlltime . ''; ?></h6>
+              </span>
+	  </h6>
+
+
+
+
 	  <h6 class="metricsGrade math"></h6>
 	</div>
-	<div class="metricsRateWrap">
-	  <h6 class="metricsTitle">Happiest when this goal has a high rating:</h6>
-	  <h6 class="metricsGrade"></h6>
-	</div>
-	<div class="metricsRateWrap">
-	  <h6 class="metricsTitle">All time average:</h6>
-	  <h6 class="metricsGrade math"></h6>
-	</div>
+
       </div>
  </div>
 
