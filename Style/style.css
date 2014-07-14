@@ -512,6 +512,17 @@ timeDescriptWrap {
     font-size: .4em;
     text-align: center; 
 }
+.arrowUp {
+    color: #80FF8A;
+    font-size: .8em;
+    cursor: pointer;
+    position: relative;
+}
+.arrowDown {
+    color: #FF3064;
+    font-size: .8em;
+    cursor: pointer;
+}
 /*-------------Reponsive-------------*/
 @media only screen and (max-width:60em){
     #home {
