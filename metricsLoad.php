@@ -53,7 +53,6 @@ while($avgRowPrevMonth = mysql_fetch_array($avgPrevMonth))
     $avgRoundPrevMonth = round($averagePrevMonth, -1);
 }
 
-
 //All-time Average of all goal ratings 
 
 $avg = mysql_query("SELECT avg(rating_score) FROM `rating`, `users` WHERE rating_author = user_name && user_name = '" . $_SESSION['user_name'] . "'");
@@ -72,6 +71,15 @@ while($happyRowToday = mysql_fetch_array($happyToday))
     $happyRoundToday = round($happyAvgToday, -1);
 }
 
+//Yesterday's Average of Happiness rating
+
+$happyYesterday = mysql_query("SELECT avg(happy_score) FROM `happy`, `users` WHERE happy_author = user_name && user_name = '" . $_SESSION['user_name'] . "'  && `happy_date` > DATE_ADD(CURDATE(), INTERVAL -2 DAY) AND `happy_date` < CURDATE()");
+while($happyRowYesterday = mysql_fetch_array($happyYesterday))
+{
+    $happyAvgYesterday = $happyRowYesterday["avg(happy_score)"];
+    $happyRoundYesterday = round($happyAvgYesterday, -1);
+}
+
 //Week's Average of Happiness rating
 
 $happyWeek = mysql_query("SELECT avg(happy_score) FROM `happy`, `users` WHERE happy_author = user_name && user_name = '" . $_SESSION['user_name'] . "'  && DATE(`happy_date`) > DATE_SUB(NOW(), INTERVAL 1 WEEK)");
@@ -81,12 +89,30 @@ while($happyRowWeek = mysql_fetch_array($happyWeek))
     $happyRoundWeek = round($happyAvgWeek, -1);
 }
 
+
+//Previous Week's Average of Happiness rating
+
+$happyPrevWeek = mysql_query("SELECT avg(happy_score) FROM `happy`, `users` WHERE happy_author = user_name && user_name = '" . $_SESSION['user_name'] . "' && happy_date > DATE_SUB(NOW(), INTERVAL 2 WEEK) && happy_date < DATE_SUB(NOW(), INTERVAL 1 WEEK)");
+while($happyRowPrevWeek = mysql_fetch_array($happyPrevWeek))
+{
+    $happyAvgPrevWeek = $happyRowPrevWeek["avg(happy_score)"];
+    $happyRoundPrevWeek = round($happyAvgPrevWeek, -1);
+}
+
 //Month's Average of Happiness rating
 $happyMonth = mysql_query("SELECT avg(happy_score) FROM `happy`, `users` WHERE happy_author = user_name && user_name = '" . $_SESSION['user_name'] . "'  && DATE(`happy_date`) > DATE_SUB(NOW(), INTERVAL 1 MONTH)");
 while($happyRowMonth = mysql_fetch_array($happyMonth))
 {
     $happyAvgMonth = $happyRowMonth["avg(happy_score)"];
     $happyRoundMonth = round($happyAvgMonth, -1);
+}
+
+//Previous Month's Average of Happiness rating
+$happyPrevMonth = mysql_query("SELECT avg(happy_score) FROM `happy`, `users` WHERE happy_author = user_name && user_name = '" . $_SESSION['user_name'] . "'  && happy_date > DATE_SUB(NOW(), INTERVAL 2 MONTH) && happy_date < DATE_SUB(NOW(), INTERVAL 1 MONTH)");
+while($happyRowPrevMonth = mysql_fetch_array($happyPrevMonth))
+{
+    $happyAvgPrevMonth = $happyRowPrevMonth["avg(happy_score)"];
+    $happyRoundPrevMonth = round($happyAvgPrevMonth, -1);
 }
 
 //All Time Average of Happiness rating
@@ -212,8 +238,20 @@ $indieTotal = mysql_num_rows($indie);
 	  $indieTitle = $indieList["post_title"];
 
 	  $indieAuthor = $indieList["post_author"];
+
+	  //Weekly Individual Goal Average
 	  $indieRatingWeek = mysql_query("SELECT avg(rating_score) FROM `rating`, `post` WHERE rating_author = '$indieAuthor' && rating_title = '".mysql_real_escape_string($indieTitle). "' && rating_date > DATE_SUB(NOW(), INTERVAL 1 WEEK)");
+
+ 	  //Previous Weeks Individual Goal Average
+	  $indieRatingPrevWeek = mysql_query("SELECT avg(rating_score) FROM `rating`, `post` WHERE rating_author = '$indieAuthor' && rating_title = '".mysql_real_escape_string($indieTitle). "' && rating_date > DATE_SUB(NOW(), INTERVAL 2 WEEK) && rating_date < DATE_SUB(NOW(), INTERVAL 1 WEEK)");
+
+	  //Monthly Individual Goal Average
 	  $indieRatingMonth = mysql_query("SELECT avg(rating_score) FROM `rating`, `post` WHERE rating_author = '$indieAuthor' && rating_title = '".mysql_real_escape_string($indieTitle). "' && rating_date > DATE_SUB(NOW(), INTERVAL 1 MONTH)");
+
+  	  //Previous Month Individual Goal Average
+	  $indieRatingPrevMonth = mysql_query("SELECT avg(rating_score) FROM `rating`, `post` WHERE rating_author = '$indieAuthor' && rating_title = '".mysql_real_escape_string($indieTitle). "' && rating_date > DATE_SUB(NOW(), INTERVAL 2 MONTH) && rating_date < DATE_SUB(NOW(), INTERVAL 1 MONTH)");
+
+	  //All time individual goal average
 	  $indieRating = mysql_query("SELECT avg(rating_score) FROM `rating`, `post` WHERE rating_author = '$indieAuthor' AND rating_title = '".mysql_real_escape_string($indieTitle). "'");
 
 
@@ -222,10 +260,19 @@ $indieTotal = mysql_num_rows($indie);
 	      $indieAvgWeek = $indieAvgWeek["avg(rating_score)"];
 	      $indieAvgWeekRound = round($indieAvgWeek, -1);
 
+ 	      while($indieAvgPrevWeek = mysql_fetch_array($indieRatingPrevWeek))
+	      {
+	      $indieAvgPrevWeek = $indieAvgPrevWeek["avg(rating_score)"];
+	      $indieAvgPrevWeekRound = round($indieAvgPrevWeek, -1);
+
    	      while($indieAvgMonth = mysql_fetch_array($indieRatingMonth))
 	      {
 	      $indieAvgMonth = $indieAvgMonth["avg(rating_score)"];
 	      $indieAvgMonthRound = round($indieAvgMonth, -1);
+	      while($indieAvgPrevMonth = mysql_fetch_array($indieRatingPrevMonth))
+	      {
+	      $indieAvgPrevMonth = $indieAvgPrevMonth["avg(rating_score)"];
+	      $indieAvgPrevMonthRound = round($indieAvgPrevMonth, -1);
 
 	      while($indieAvgAll = mysql_fetch_array($indieRating))
 	      {
@@ -241,9 +288,51 @@ $indieTotal = mysql_num_rows($indie);
 		     </h6>
 
 		     <div class="timeDescriptWrap">
-		        <h6 class="timeDescript">7 days: <span class="math">' .$indieAvgWeekRound. '</span> &nbsp;&nbsp;|&nbsp;&nbsp; 30 days: <span class="math">' .$indieAvgMonthRound. '</span> &nbsp;&nbsp;|&nbsp;&nbsp; All time: <span class="math">' .$indieAvgAlltime. '</span> </h6>
+		        <h6 class="timeDescript">7 days: <span class="math">' .$indieAvgWeekRound. '</span>'; 
+
+
+              		if($indieAvgWeekRound > $indieAvgPrevWeekRound)
+	          	{
+   			   echo '<span class="arrowUp" title="Improved from previous 7 days">
+	      		      (&#8593;)
+	      		   </span>';
+			}
+			elseif($indieAvgWeekRound < $indieAvgPrevWeekRound)
+			{
+ 			   echo '<span class="arrowDown" title="Down from previous 7 days">
+	      		      (&#8595;)
+	      		   </span>';
+			}
+ 			elseif($indieAvgWeekRound == $indieAvgPrevWeekRound)
+			{
+ 			   echo '<span class="equal">
+	      		   </span>';
+			}
+			
+			 echo '&nbsp;&nbsp;|&nbsp;&nbsp; 30 days: <span class="math">' .$indieAvgMonthRound. '</span>'; 
+			 if($indieAvgMonthRound > $indieAvgPrevMonthRound)
+	          	{
+   			   echo '<span class="arrowUp" title="Improved from previous 30 days">
+	      		      (&#8593;)
+	      		   </span>';
+			}
+			elseif($indieAvgMonthRound < $indieAvgPrevMonthRound)
+			{
+ 			   echo '<span class="arrowDown" title="Down from previous 30 days">
+	      		      (&#8595;)
+	      		   </span>';
+			}
+ 			elseif($indieAvgMonthRound == $indieAvgPrevMonthRound)
+			{
+ 			   echo '<span class="equal">
+	      		   </span>';
+			}
+
+			 echo '&nbsp;&nbsp;|&nbsp;&nbsp; All time: <span class="math">' .$indieAvgAlltime. '</span> </h6>
 		     </div>';
 		  }
+              }
+              }
 	      }
 	      }
 	      }
@@ -260,16 +349,83 @@ $indieTotal = mysql_num_rows($indie);
           <span>
              <h6 class="metricsGrade math"><?php echo '' . $happyRoundToday . ''; ?></h6>
           </span>
+
+          <?php	  
+  
+              if($happyRoundToday > $happyRoundYesterday)
+	          {
+   	          echo '<span class="arrowUp" title="Improved from yesterday.">
+	      	      (&#8593;)
+	      	  </span>';
+		  }
+		  elseif($happyRoundToday < $happyRoundYesterday)
+		  {
+ 		  echo '<span class="arrowDown" title="Down from previous yesterday.">
+	      	     (&#8595;)
+	      	  </span>';
+		  }
+ 		  elseif($happyRoundToday == $happyRoundYesterday)
+		  {
+ 		  echo '<span class="equal">
+		  
+	      	  </span>';
+		  }
+	    ?>
+
       </h6>
       <h6 class="metricsTitleSub">7 days:
           <span>
              <h6 class="metricsGrade math"><?php echo '' . $happyRoundWeek . ''; ?></h6>
           </span>
+
+          <?php	  
+  
+              if($happyRoundWeek > $happyRoundPrevWeek)
+	          {
+   	          echo '<span class="arrowUp" title="Improved from yesterday.">
+	      	      (&#8593;)
+	      	  </span>';
+		  }
+		  elseif($happyRoundWeek < $happyRoundPrevWeek)
+		  {
+ 		  echo '<span class="arrowDown" title="Down from previous yesterday.">
+	      	     (&#8595;)
+	      	  </span>';
+		  }
+ 		  elseif($happyRoundWeek == $happyRoundPrevWeek)
+		  {
+ 		  echo '<span class="equal">
+		  
+	      	  </span>';
+		  }
+	    ?>
       </h6>
       <h6 class="metricsTitleSub">30 Days:
           <span>
              <h6 class="metricsGrade math"><?php echo '' . $happyRoundMonth . ''; ?></h6>
           </span>
+
+ 	  <?php		
+  
+              if($happyRoundMonth > $happyRoundPrevMonth)
+	          {
+   	          echo '<span class="arrowUp" title="Improved from yesterday.">
+	      	      (&#8593;)
+	      	  </span>';
+		  }
+		  elseif($happyRoundMonth < $happyRoundPrevMonth)
+		  {
+ 		  echo '<span class="arrowDown" title="Down from previous yesterday.">
+	      	     (&#8595;)
+	      	  </span>';
+		  }
+ 		  elseif($happyRoundMonth == $happyRoundPrevMonth)
+		  {
+ 		  echo '<span class="equal">
+		  
+	      	  </span>';
+		  }
+	    ?>
        </h6>
        <h6 class="metricsTitleSub">All Time:
           <span>
