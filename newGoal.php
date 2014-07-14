@@ -4,7 +4,7 @@
       if(isset($_POST['post_title']))
       {
       $errors = array();
-      $post_title   =    $_POST['post_title'];
+      $post_title   =    stripslashes($_POST['post_title']);
       
       if(empty($post_title))
          { 
@@ -13,11 +13,11 @@
          }
          else
          {
-      
+         
          $sql = "INSERT INTO
                                                               post(post_title,
                                                                   post_author)
-              VALUES('" . mysql_real_escape_string($_POST['post_title']) . "',
+              VALUES('" . mysql_real_escape_string($post_title) . "',
                                            '" . $_SESSION['user_name'] . "')";
      
          mysql_query($sql);

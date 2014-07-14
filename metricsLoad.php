@@ -7,8 +7,8 @@ include 'head.php';
 $avgToday = mysql_query("SELECT avg(rating_score) FROM `rating`, `users` WHERE rating_author = user_name && user_name = '" . $_SESSION['user_name'] . "'  && DATE(`rating_date`) = CURDATE()");
 while($avgRowToday = mysql_fetch_array($avgToday))
 {
-$averageToday = $avgRowToday["avg(rating_score)"];
-$avgRoundToday = round($averageToday, -1);
+    $averageToday = $avgRowToday["avg(rating_score)"];
+    $avgRoundToday = round($averageToday, -1);
 }
 
 
@@ -17,8 +17,8 @@ $avgRoundToday = round($averageToday, -1);
 $avgWeek = mysql_query("SELECT avg(rating_score) FROM `rating`, `users` WHERE rating_author = user_name && user_name = '" . $_SESSION['user_name'] . "'  && rating_date > DATE_SUB(NOW(), INTERVAL 1 WEEK)");
 while($avgRowWeek = mysql_fetch_array($avgWeek))
 {
-$averageWeek = $avgRowWeek["avg(rating_score)"];
-$avgRoundWeek = round($averageWeek, -1);
+    $averageWeek = $avgRowWeek["avg(rating_score)"];
+    $avgRoundWeek = round($averageWeek, -1);
 }
 
 //Month Average of all goal ratings 
@@ -26,8 +26,8 @@ $avgRoundWeek = round($averageWeek, -1);
 $avgMonth = mysql_query("SELECT avg(rating_score) FROM `rating`, `users` WHERE rating_author = user_name && user_name = '" . $_SESSION['user_name'] . "'  && rating_date > DATE_SUB(NOW(), INTERVAL 1 MONTH)");
 while($avgRowMonth = mysql_fetch_array($avgMonth))
 {
-$averageMonth = $avgRowMonth["avg(rating_score)"];
-$avgRoundMonth = round($averageMonth, -1);
+    $averageMonth = $avgRowMonth["avg(rating_score)"];
+    $avgRoundMonth = round($averageMonth, -1);
 }
 
 //All-time Average of all goal ratings 
@@ -35,40 +35,40 @@ $avgRoundMonth = round($averageMonth, -1);
 $avg = mysql_query("SELECT avg(rating_score) FROM `rating`, `users` WHERE rating_author = user_name && user_name = '" . $_SESSION['user_name'] . "'");
 while($avgRow = mysql_fetch_array($avg))
 {
-$average = $avgRow["avg(rating_score)"];
-$avgRoundAlltime = round($average, -1);
+    $average = $avgRow["avg(rating_score)"];
+    $avgRoundAlltime = round($average, -1);
 }
 
 //Today's Average of Happiness rating
 $happyToday = mysql_query("SELECT avg(happy_score) FROM `happy`, `users` WHERE happy_author = user_name && user_name = '" . $_SESSION['user_name'] . "'  && DATE(`happy_date`) = CURDATE()");
 while($happyRowToday = mysql_fetch_array($happyToday))
 {
-$happyAvgToday = $happyRowToday["avg(happy_score)"];
-$happyRoundToday = round($happyAvgToday, -1);
+    $happyAvgToday = $happyRowToday["avg(happy_score)"];
+    $happyRoundToday = round($happyAvgToday, -1);
 }
 
 //Week's Average of Happiness rating
 $happyWeek = mysql_query("SELECT avg(happy_score) FROM `happy`, `users` WHERE happy_author = user_name && user_name = '" . $_SESSION['user_name'] . "'  && DATE(`happy_date`) > DATE_SUB(NOW(), INTERVAL 1 WEEK)");
 while($happyRowWeek = mysql_fetch_array($happyWeek))
 {
-$happyAvgWeek = $happyRowWeek["avg(happy_score)"];
-$happyRoundWeek = round($happyAvgWeek, -1);
+    $happyAvgWeek = $happyRowWeek["avg(happy_score)"];
+    $happyRoundWeek = round($happyAvgWeek, -1);
 }
 
 //Month's Average of Happiness rating
 $happyMonth = mysql_query("SELECT avg(happy_score) FROM `happy`, `users` WHERE happy_author = user_name && user_name = '" . $_SESSION['user_name'] . "'  && DATE(`happy_date`) > DATE_SUB(NOW(), INTERVAL 1 MONTH)");
 while($happyRowMonth = mysql_fetch_array($happyMonth))
 {
-$happyAvgMonth = $happyRowMonth["avg(happy_score)"];
-$happyRoundMonth = round($happyAvgMonth, -1);
+    $happyAvgMonth = $happyRowMonth["avg(happy_score)"];
+    $happyRoundMonth = round($happyAvgMonth, -1);
 }
 
 //All Time Average of Happiness rating
 $happyAlltime = mysql_query("SELECT avg(happy_score) FROM `happy`, `users` WHERE happy_author = user_name && user_name = '" . $_SESSION['user_name'] . "'");
 while($happyRowAlltime = mysql_fetch_array($happyAlltime))
 {
-$happyAvgAlltime = $happyRowAlltime["avg(happy_score)"];
-$happyRoundAlltime = round($happyAvgAlltime, -1);
+    $happyAvgAlltime = $happyRowAlltime["avg(happy_score)"];
+    $happyRoundAlltime = round($happyAvgAlltime, -1);
 }
 
 //Individual goal statistics
@@ -118,10 +118,10 @@ $indieTotal = mysql_num_rows($indie);
 	  $indieTitle = $indieList["post_title"];
 
 	  $indieAuthor = $indieList["post_author"];
-	  $indieRatingWeek = mysql_query("SELECT avg(rating_score) FROM `rating`, `post` WHERE rating_author = '$indieAuthor' && rating_title = '$indieTitle' && rating_date > DATE_SUB(NOW(), INTERVAL 1 WEEK)");
-	  $indieRatingMonth = mysql_query("SELECT avg(rating_score) FROM `rating`, `post` WHERE rating_author = '$indieAuthor' && rating_title = '$indieTitle' && rating_date > DATE_SUB(NOW(), INTERVAL 1 MONTH)");
-	  $indieRating = mysql_query("SELECT avg(rating_score) FROM `rating`, `post` WHERE rating_author = '$indieAuthor' AND rating_title = '$indieTitle'");
-	  $indieTitle = stripslashes($indieTitle);
+	  $indieRatingWeek = mysql_query("SELECT avg(rating_score) FROM `rating`, `post` WHERE rating_author = '$indieAuthor' && rating_title = '".mysql_real_escape_string($indieTitle). "' && rating_date > DATE_SUB(NOW(), INTERVAL 1 WEEK)");
+	  $indieRatingMonth = mysql_query("SELECT avg(rating_score) FROM `rating`, `post` WHERE rating_author = '$indieAuthor' && rating_title = '".mysql_real_escape_string($indieTitle). "' && rating_date > DATE_SUB(NOW(), INTERVAL 1 MONTH)");
+	  $indieRating = mysql_query("SELECT avg(rating_score) FROM `rating`, `post` WHERE rating_author = '$indieAuthor' AND rating_title = '".mysql_real_escape_string($indieTitle). "'");
+
 
 	      while($indieAvgWeek = mysql_fetch_array($indieRatingWeek))
 	      {
@@ -157,40 +157,34 @@ $indieTotal = mysql_num_rows($indie);
 	?>
 	</div>
 	
-	<div class="break"></div>
+   <div class="break"></div>
 
-	<h6 class="metricsPreTitle">Happiness</h6>
-	<div class="metricsRateWrap">
-	  <h6 class="metricsTitle">Average:</h6>
-
- <h6 class="metricsTitleSub">Today:
-	      <span>
-                 <h6 class="metricsGrade math"><?php echo '' . $happyRoundToday . ''; ?></h6>
-              </span>
-	  </h6>
-	   <h6 class="metricsTitleSub">7 days:
-	      <span>
-                 <h6 class="metricsGrade math"><?php echo '' . $happyRoundWeek . ''; ?></h6>
-              </span>
-	  </h6>
-	  <h6 class="metricsTitleSub">30 Days:
-	      <span>
-                 <h6 class="metricsGrade math"><?php echo '' . $happyRoundMonth . ''; ?></h6>
-              </span>
-	  </h6>
-	   <h6 class="metricsTitleSub">All Time:
-	      <span>
-                 <h6 class="metricsGrade math"><?php echo '' . $happyRoundAlltime . ''; ?></h6>
-              </span>
-	  </h6>
-
-
-
-
-	  <h6 class="metricsGrade math"></h6>
-	</div>
-
-      </div>
+   <h6 class="metricsPreTitle">Happiness</h6>
+   <div class="metricsRateWrap">
+      <h6 class="metricsTitle">Average:</h6>
+      <h6 class="metricsTitleSub">Today:
+          <span>
+             <h6 class="metricsGrade math"><?php echo '' . $happyRoundToday . ''; ?></h6>
+          </span>
+      </h6>
+      <h6 class="metricsTitleSub">7 days:
+          <span>
+             <h6 class="metricsGrade math"><?php echo '' . $happyRoundWeek . ''; ?></h6>
+          </span>
+      </h6>
+      <h6 class="metricsTitleSub">30 Days:
+          <span>
+             <h6 class="metricsGrade math"><?php echo '' . $happyRoundMonth . ''; ?></h6>
+          </span>
+       </h6>
+       <h6 class="metricsTitleSub">All Time:
+          <span>
+            <h6 class="metricsGrade math"><?php echo '' . $happyRoundAlltime . ''; ?></h6>
+          </span>
+       </h6>
+       <h6 class="metricsGrade math"></h6>
+   </div>
+  </div>
  </div>
 
 <script >
